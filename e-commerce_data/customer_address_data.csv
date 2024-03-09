@@ -1,0 +1,101 @@
+Customer_Address_ID,Zip_Code,Country,State,City,Street,Address_Type
+CA4564,51497,AT,Kansas,Lake Rachelberg,9112 Kennedy Inlet Suite 070,delivery_address
+CA0377,14377,NE,Mississippi,West Gloria,818 Jackson Court Apt. 194,delivery_address
+CA3503,45723,OM,North Carolina,Youngview,437 Parker Spring,billing_address
+CA7165,80112,KZ,Missouri,West Tammy,07986 Zavala Ranch,billing_address
+CA7410,36825,JM,Oklahoma,Blakeville,6408 Natalie River,delivery_address
+CA0087,38523,CV,Indiana,North Barbara,1713 Matthew Locks Apt. 664,delivery_address
+CA5670,40378,RU,Tennessee,Port Nicholas,441 Moore Track,delivery_address
+CA9093,32979,FM,South Dakota,South Lindsey,75994 Christopher Hollow Suite 468,delivery_address
+CA4027,17777,ET,Michigan,Lake Jamesborough,63631 Chad Ford,delivery_address
+CA3805,43882,ZM,Massachusetts,New Brian,781 Cheryl Islands,billing_address
+CA6561,19269,RO,Wisconsin,Ashleyview,962 Johnson Alley,delivery_address
+CA0087,96339,RW,Rhode Island,North Christopher,318 Robert Row,delivery_address
+CA1305,14501,KM,New Jersey,Rojasmouth,48135 Brandon Crossroad,billing_address
+CA4398,86721,ZM,Oklahoma,East Kellyland,324 Wilkerson Garden Apt. 036,billing_address
+CA3596,70497,AT,Michigan,Jennifertown,170 Olson Spurs,billing_address
+CA9316,60537,BJ,Virginia,North Paulburgh,192 John Port,delivery_address
+CA6670,86492,DK,Idaho,East Gabrielberg,91918 James Gardens,delivery_address
+CA5383,42459,AT,New Hampshire,Port Thomasfort,880 Carol Haven Suite 670,billing_address
+CA4189,60144,TJ,Missouri,Michaelborough,392 Davis Road,billing_address
+CA9618,97375,LS,Colorado,East Alexandershire,531 Michelle Ford,delivery_address
+CA1831,24134,BH,North Dakota,Taylorburgh,19687 Amanda Cliffs,billing_address
+CA4240,05465,MN,Arizona,Alyssabury,36321 Turner Forks,delivery_address
+CA8941,07778,GA,Nebraska,Whitneyville,7253 Fleming Ville Apt. 913,delivery_address
+CA1770,73973,SE,New Jersey,East Nicholasberg,44113 Torres Forge Apt. 166,delivery_address
+CA9039,83223,JO,Nevada,East Jeffery,29925 Terrell Crest Apt. 094,billing_address
+CA5293,98710,TL,Hawaii,South Michelle,24025 Lee Forges Apt. 507,delivery_address
+CA3481,63724,GA,Massachusetts,Maldonadohaven,6332 Hunter Unions,billing_address
+CA1227,64515,RS,Wyoming,South Jeffrey,228 Allison Loaf Suite 008,billing_address
+CA5424,06207,KP,North Dakota,Freemanport,31984 Rhonda Lake Suite 001,billing_address
+CA4880,10543,NG,New Jersey,Ruthshire,148 Patrick Springs,delivery_address
+CA1881,99925,PS,Nevada,Barnesbury,4893 Foster River Suite 459,delivery_address
+CA4962,58091,DO,Alaska,Nathanville,9063 Shane Gateway,delivery_address
+CA3245,54966,ES,Iowa,Port Steven,32634 Harper Isle,billing_address
+CA0405,64201,BG,Rhode Island,East Heathertown,037 Michael Squares,delivery_address
+CA9726,21604,GW,Iowa,Kristieberg,127 Brown Mount Suite 000,billing_address
+CA9874,78226,PS,Massachusetts,West Alanside,0471 Larson Mill,billing_address
+CA4705,87423,TZ,Montana,New Robert,900 Powell Village,delivery_address
+CA3989,21323,KP,Delaware,South Danielton,66312 Keller View,delivery_address
+CA5937,12968,DZ,Hawaii,Lake Sarahport,785 Tommy Forest Suite 757,billing_address
+CA8218,30822,SN,Nevada,North Madisonville,69386 Laura Road Suite 561,billing_address
+CA1221,32863,VA,Arkansas,East Henry,45487 Chavez Stravenue,billing_address
+CA2409,93112,NL,Minnesota,Justinburgh,432 Rosales Crest Suite 142,delivery_address
+CA3655,28642,MT,Tennessee,Faulknerchester,200 Angela Forge,delivery_address
+CA4913,67453,BJ,North Dakota,East Kenneth,85712 Santos Points Apt. 468,delivery_address
+CA4207,35985,NL,Wisconsin,New Chrisport,1561 Nicole Drives,billing_address
+CA7745,20067,ML,Minnesota,New Anthony,822 Lowe Trail Apt. 205,billing_address
+CA9903,94150,DJ,Maine,North Dylanside,818 Melissa Shoals,delivery_address
+CA9314,41736,CV,Arkansas,Lawrencefurt,0882 Russell Rapid,delivery_address
+CA1526,26745,PW,Nevada,Maryport,9713 Richard Inlet,delivery_address
+CA2406,84550,SG,Ohio,East Logan,1756 Kayla Forge Apt. 423,billing_address
+CA1495,97382,BR,Kentucky,Lake David,818 Jeff Ville,delivery_address
+CA2179,31585,UY,South Carolina,South Jennifer,04072 Nicole Underpass Suite 403,billing_address
+CA9176,12520,PW,South Dakota,Crawfordchester,14746 Jones Burgs Suite 912,billing_address
+CA2719,93271,IL,Delaware,Brendaton,70826 Williams Roads Apt. 218,billing_address
+CA8010,61773,FR,Minnesota,Lake Joyce,547 Murphy Ranch Suite 123,billing_address
+CA3234,08505,DJ,Minnesota,Jeffreyton,0535 Carpenter Pike,delivery_address
+CA9955,43749,AZ,Florida,Edwardsland,838 Kimberly Locks Apt. 929,billing_address
+CA0006,52480,BH,Michigan,Williamsshire,9516 Jerry Crossroad Suite 062,billing_address
+CA6820,30104,CD,Iowa,East Antonio,45267 Elizabeth Trace Suite 038,delivery_address
+CA4663,21470,IE,Colorado,West Brandon,21250 Jacqueline Valley,billing_address
+CA8599,26064,SC,North Dakota,Ryanburgh,0588 Jennifer Drive,delivery_address
+CA0540,08102,CH,Wyoming,Baileystad,57783 Nunez Pass Suite 274,billing_address
+CA4362,53944,QA,Alaska,Johnsonfurt,1512 Gordon Forge,billing_address
+CA9429,58395,IS,California,New Ronald,6647 Garza Rest,delivery_address
+CA0357,15243,ER,Pennsylvania,Erikfurt,32980 Theresa Dam Apt. 623,billing_address
+CA4787,34222,ER,Illinois,South Dalehaven,37067 Graves Knoll Apt. 454,billing_address
+CA4167,86050,CG,Kentucky,East Keith,02740 Rivera Cove,billing_address
+CA7852,62750,SV,Vermont,Christopherstad,4547 Jesse Rapids,delivery_address
+CA6405,93461,UZ,Alabama,Lake Amanda,210 Hobbs Streets,billing_address
+CA7963,14575,LU,West Virginia,Luceroland,4785 Alvarez Field Suite 043,billing_address
+CA5239,43671,ZM,Alaska,East Kristenmouth,743 Cabrera Row Suite 956,delivery_address
+CA3760,50229,TG,Louisiana,South Ianburgh,127 John Knoll,delivery_address
+CA4774,56055,FR,Oklahoma,Wilkinsmouth,353 Carla Flats,billing_address
+CA7376,97596,KI,Missouri,Davidton,8123 Jeremy Passage Apt. 553,delivery_address
+CA5819,82457,MW,Idaho,New Thomaschester,0680 Hull Mission,billing_address
+CA9648,38433,GA,Georgia,North Sarahchester,1990 Cynthia Curve Apt. 197,billing_address
+CA0305,00658,GM,Connecticut,South Brianville,0563 Baldwin Walks Suite 626,billing_address
+CA9859,19005,GH,West Virginia,West Jose,1847 Nathaniel Wall Apt. 455,billing_address
+CA5292,72896,CU,Georgia,Port Gregory,3217 Wade Lodge Apt. 208,delivery_address
+CA0347,62459,CV,Montana,New Sandraport,2425 Hess Highway Apt. 600,delivery_address
+CA7824,85236,CN,Ohio,Jasonmouth,02969 Ayala Locks Suite 222,delivery_address
+CA7781,58681,NG,Arkansas,Josephburgh,65351 Mason Bridge,delivery_address
+CA9055,92858,EE,Illinois,Donnaburgh,212 Joseph Pike Apt. 148,delivery_address
+CA2501,13461,TW,Texas,Ravenberg,824 Kyle Meadows,billing_address
+CA4950,32347,DJ,Vermont,Nathanfurt,8315 William Passage,billing_address
+CA8829,26660,PG,Arizona,New Jessicatown,382 Giles Ridges Suite 744,delivery_address
+CA7156,06683,AO,Virginia,Cartertown,995 Thomas Parkways Apt. 129,billing_address
+CA6679,82166,CN,North Carolina,Melissaport,295 Williams Mill,delivery_address
+CA9747,04550,MX,Massachusetts,Nataliemouth,81196 Baker Hollow Suite 203,delivery_address
+CA0550,62593,LU,Hawaii,West Johnnyfort,9472 Bryant Pike Apt. 429,delivery_address
+CA7910,09832,JP,South Carolina,Port Deanna,147 Stone Ferry,delivery_address
+CA7563,91887,TJ,Michigan,Parkerfurt,0040 Jean Fort,billing_address
+CA4244,85613,GD,Wyoming,New Jose,2988 Steven Centers,billing_address
+CA1266,39755,BR,Ohio,Brownchester,3033 Devin Mission Suite 293,delivery_address
+CA3175,55619,MH,Louisiana,New Craig,0490 Smith Stravenue Suite 515,billing_address
+CA6475,87023,BF,Mississippi,Port Lanceberg,13334 Andrew Valleys Suite 074,delivery_address
+CA5425,61308,BF,Montana,Johntown,9916 Valenzuela Radial Apt. 097,billing_address
+CA9053,74657,GY,Connecticut,Kirbyton,95608 Sonya Plaza Apt. 239,billing_address
+CA2760,42918,RO,California,Guzmanport,2516 Carr Freeway,billing_address
+CA5348,24844,IN,Kentucky,Josetown,924 Sanders Forge Apt. 219,delivery_address

@@ -1,0 +1,101 @@
+Category_ID,Parent_Category_ID,Category_Type
+CA4779,CA1002,Toys
+CA6461,CA1002,Toys
+CA2809,,Home & Garden
+CA1354,CA1001,Toys
+CA9078,CA1001,Electronics
+CA2105,,Home & Garden
+CA4504,CA1001,Electronics
+CA8319,CA1002,Toys
+CA2751,CA1001,Clothing
+CA8255,CA1001,Toys
+CA4429,,Clothing
+CA6022,CA1001,Electronics
+CA2903,,Clothing
+CA5885,CA1002,Electronics
+CA9063,,Home & Garden
+CA7672,CA1001,Toys
+CA6082,CA1001,Electronics
+CA3377,CA1001,Home & Garden
+CA9285,CA1002,Home & Garden
+CA0189,,Electronics
+CA5292,,Toys
+CA0194,,Home & Garden
+CA5804,,Home & Garden
+CA7014,CA1001,Electronics
+CA6427,CA1001,Home & Garden
+CA8484,,Electronics
+CA9892,CA1002,Electronics
+CA1471,,Electronics
+CA8913,,Clothing
+CA8395,CA1001,Toys
+CA4349,,Home & Garden
+CA1260,,Toys
+CA5343,,Electronics
+CA3800,CA1001,Electronics
+CA0482,,Clothing
+CA4628,,Toys
+CA1786,,Home & Garden
+CA5921,CA1001,Books
+CA3773,,Home & Garden
+CA9910,CA1002,Toys
+CA9490,CA1001,Toys
+CA0069,,Clothing
+CA8191,,Clothing
+CA6015,CA1002,Toys
+CA0952,,Books
+CA4087,,Electronics
+CA7104,,Books
+CA9512,,Toys
+CA1569,,Books
+CA3036,CA1001,Home & Garden
+CA7264,CA1002,Clothing
+CA5640,,Electronics
+CA2706,CA1001,Toys
+CA6509,CA1002,Toys
+CA9164,,Books
+CA4560,CA1002,Toys
+CA8976,,Toys
+CA5711,,Electronics
+CA9124,CA1002,Books
+CA1795,CA1002,Books
+CA6986,CA1001,Electronics
+CA4928,CA1002,Toys
+CA8747,,Electronics
+CA4917,CA1002,Electronics
+CA8345,,Home & Garden
+CA6761,CA1002,Books
+CA1632,,Toys
+CA5806,,Clothing
+CA3945,CA1002,Books
+CA4196,CA1001,Home & Garden
+CA0226,CA1002,Electronics
+CA8710,CA1001,Clothing
+CA0405,,Clothing
+CA7304,CA1002,Clothing
+CA3704,,Clothing
+CA2828,,Books
+CA5458,CA1002,Books
+CA4206,CA1001,Books
+CA1639,,Electronics
+CA7700,,Books
+CA8823,CA1001,Home & Garden
+CA0073,,Books
+CA8140,CA1001,Toys
+CA6472,,Home & Garden
+CA5861,CA1002,Books
+CA7540,CA1002,Toys
+CA8677,,Clothing
+CA2941,,Toys
+CA9107,,Electronics
+CA2575,CA1001,Clothing
+CA2947,,Electronics
+CA4806,CA1001,Electronics
+CA8364,,Electronics
+CA8871,CA1002,Clothing
+CA1762,CA1002,Clothing
+CA5521,CA1001,Electronics
+CA3762,,Clothing
+CA2987,CA1002,Books
+CA1064,CA1002,Books
+CA9983,CA1001,Home & Garden
