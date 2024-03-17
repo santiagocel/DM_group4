@@ -1,8 +1,8 @@
 name: ETL workflow dor group 4
 
 on:
-#  schedule:
-#    - cron: '0 */3 * * *' # Run every 3 hours
+  schedule:
+    - cron: '5 * * * *' # Run every 3 hours
   push:
     branches: [ main ]
 jobs:
@@ -26,9 +26,12 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           Rscript -e 'install.packages(c("ggplot2","dplyr","readr","RSQLite"))'
-      - name: Execute R script
+      - name: Execute data validation
         run: |
           Rscript R/G4.R
+      - name: Execute data analysis
+        run: |
+          Rscript R/load_data.R
       - name: Add files
         run: |
           git config --global user.email "u2292213@live.warwick.ac.uk"
