@@ -1,0 +1,199 @@
+customer_address_id,customer_id,zip_code,country,state,city,street
+CA2786,CU0041,21639,Greece,Arizona,East Blakeborough,76218 Catherine Freeway
+CA7301,CU5381,86282,Bosnia and Herzegovina,Nebraska,East Emily,2956 Christina Inlet
+CA6638,CU5381,57281,Jersey,Washington,New Douglas,7829 Erik Extension
+CA7856,CU5381,30961,Luxembourg,West Virginia,North Kevinburgh,6383 Gillespie Ways
+CA5013,CU7197,10724,Somalia,Louisiana,Annaview,93301 Palmer Oval
+CA6624,CU7197,09807,Colombia,New Jersey,Williamchester,70245 Scott Summit Suite 417
+CA3044,CU0349,63393,Guernsey,Mississippi,East Terriview,811 Dawn Key Suite 776
+CA0341,CU0349,20237,Christmas Island,Kansas,Lake Emma,728 Jillian Meadow
+CA9379,CU1924,49246,Honduras,Hawaii,Victoriastad,603 Perez Rapid Apt. 295
+CA5657,CU1924,58802,Sri Lanka,Virginia,Taratown,7030 Anderson Groves Apt. 722
+CA8660,CU1924,32214,Marshall Islands,Florida,Lake Joshua,706 Green Tunnel Suite 213
+CA6264,CU4035,97570,Seychelles,New Hampshire,Patriciastad,4787 Brian Drive
+CA8361,CU8659,61358,Seychelles,Nevada,North Zachary,952 Jeffrey Spurs
+CA9330,CU8659,09142,Barbados,North Carolina,Medinafort,356 Zachary Forest Apt. 083
+CA2059,CU8659,82593,Tonga,Maryland,Michelleport,652 Elijah Landing
+CA5534,CU8645,83583,Djibouti,Mississippi,New Samuelton,9909 Moses Trail
+CA1267,CU5458,98719,Guadeloupe,Tennessee,East Cynthiaport,79439 Campbell Orchard Suite 758
+CA3391,CU7042,77098,Haiti,Hawaii,Crawfordland,60567 Jason Burg
+CA0110,CU5873,27962,Pakistan,Iowa,Port Christina,62986 Goodman Avenue Apt. 993
+CA0864,CU5873,88074,Cayman Islands,Kansas,Port Vernonmouth,668 Amanda Inlet
+CA4400,CU1060,85507,Singapore,Missouri,Port Barbara,3589 Jacob Mews
+CA9938,CU1060,84280,Guam,Wyoming,Birdville,0906 Frank Court
+CA7306,CU1060,17847,Grenada,Tennessee,West John,0018 Thomas Plaza
+CA0338,CU4580,18575,Puerto Rico,Hawaii,Harmonshire,61715 Douglas Mission
+CA3234,CU9624,77100,Martinique,Iowa,East Jeffrey,49413 Adam Glens
+CA2704,CU9624,49346,United States Virgin Islands,Mississippi,East Willieport,41886 Michael Isle
+CA2242,CU9470,61586,Tokelau,South Carolina,New Samuel,01176 Alexandra Squares
+CA9147,CU1232,69886,Saint Barthelemy,West Virginia,New Jessicaborough,229 Cindy Prairie Suite 417
+CA4482,CU1232,02890,Tonga,Colorado,Melissaland,7512 Caldwell Tunnel Suite 885
+CA9034,CU0657,65777,Norfolk Island,Tennessee,Garybury,1173 Foster Squares Suite 458
+CA0883,CU0657,99865,United States Minor Outlying Islands,Ohio,Elizabethside,817 Dominic Meadow
+CA5520,CU0657,18688,Paraguay,New Jersey,Port Nancyberg,19945 Leslie Spur
+CA4562,CU8735,57782,French Polynesia,Colorado,Port Ashley,656 Jose Vista
+CA2292,CU8735,29781,French Polynesia,New Jersey,South Charles,284 Lee Haven
+CA6895,CU8735,11107,Iraq,Minnesota,South Stephanie,04890 Samuel Extension Suite 440
+CA0461,CU0390,95659,Ukraine,Kansas,Perezton,2691 Kathy Village Apt. 082
+CA1619,CU0390,16613,Cameroon,Idaho,North Natashabury,8852 Salas Court Apt. 943
+CA7412,CU0390,83726,Hungary,Rhode Island,Juliashire,223 Hartman Parks
+CA6115,CU4061,02978,Iraq,Florida,Chelseaside,421 Leah Mountains Suite 135
+CA9760,CU7632,88497,Saint Helena,Alaska,West Vincent,97733 Martinez Plaza Suite 513
+CA1361,CU7632,26408,Aruba,Iowa,East Jonathan,291 Larry Green Suite 105
+CA1021,CU7339,87903,India,Nebraska,Ashleymouth,2216 Michael Street Apt. 062
+CA4050,CU3531,80049,Pakistan,Connecticut,West Elizabeth,248 Abigail Walk Apt. 444
+CA6641,CU3531,51516,Antarctica (the territory South of 60 deg S),Tennessee,New Brianland,83088 Stone Crossroad Suite 458
+CA3413,CU4740,54951,Faroe Islands,South Carolina,New James,763 Gary Groves
+CA3044,CU4740,54955,Niger,New York,West Justinton,2555 Hancock Lakes
+CA7151,CU4740,78931,Saint Martin,Arizona,Lake Emilyshire,4385 Thomas Station
+CA7759,CU3705,71325,Sao Tome and Principe,Oklahoma,Port Ruth,565 Burns Centers Apt. 682
+CA5915,CU3705,70270,Trinidad and Tobago,Maine,Jonesport,27525 Crystal Shores
+CA4706,CU3172,28650,Guinea-Bissau,California,Rodriguezchester,728 Brian Forest
+CA0766,CU0928,69054,Cayman Islands,Idaho,Lake Hannahside,35083 Lamb Key
+CA2626,CU0928,24632,Gibraltar,Arkansas,South Sara,9181 Andrea Ridges
+CA9902,CU0928,12116,Guernsey,Georgia,Weisschester,03120 Hammond Field Apt. 814
+CA2212,CU0595,79262,Austria,Montana,Chanmouth,1267 Daniel Manors Suite 836
+CA1684,CU0595,43334,Guinea,Florida,Curtiston,178 Medina Island Suite 918
+CA3413,CU0595,45550,United Arab Emirates,Alaska,South Richard,784 Cannon Landing Suite 397
+CA4376,CU2260,44549,Palestinian Territory,Missouri,West Leslieborough,85960 Sherman Mission
+CA2187,CU9857,44078,Bahamas,Alabama,Williamsland,252 Reid Dale Apt. 291
+CA1493,CU7728,47663,Tuvalu,Michigan,New Christina,3814 Taylor Tunnel Suite 490
+CA1997,CU7728,13157,British Virgin Islands,Iowa,Mortonton,69156 Kelly Branch
+CA5007,CU3989,90178,Mexico,Illinois,West Elizabeth,559 Fisher Mountain Suite 810
+CA3431,CU3989,55999,French Polynesia,Arkansas,Lake Laurie,55622 Christina Inlet Apt. 678
+CA6377,CU8764,33898,Svalbard & Jan Mayen Islands,Oklahoma,Jonathanstad,50270 Dawn Cliff
+CA5743,CU6349,16911,Costa Rica,Iowa,Martinbury,98221 Vega Forges
+CA2589,CU6349,80786,Congo,New York,Port Barry,5319 Calderon Lakes
+CA3760,CU6349,44547,New Zealand,Arizona,Lake Andrewhaven,874 Pamela Spurs Suite 605
+CA9251,CU3737,48148,Dominican Republic,New Hampshire,Andreaberg,0270 Mcgee Motorway
+CA3869,CU9045,83612,Malaysia,Hawaii,Welchfurt,978 Buchanan Landing Suite 858
+CA0446,CU9045,42305,Mali,Louisiana,Christensenshire,902 Cervantes Tunnel
+CA2281,CU9045,81141,South Africa,New Mexico,Whitneyland,9149 Kathryn Harbors Suite 074
+CA6615,CU3912,08939,Micronesia,Wisconsin,Duanechester,96189 Martin Dale
+CA6750,CU0352,75652,Costa Rica,Kentucky,Millerstad,79571 Harper Rue
+CA4963,CU2485,43023,Uzbekistan,Kansas,Chadport,3421 Shaw Grove Suite 943
+CA1279,CU2485,42165,Belize,Florida,Haleport,96171 Tina Lane
+CA3039,CU2485,10152,Barbados,Illinois,Michaelland,7797 Ronald Trail
+CA9476,CU9459,94800,Haiti,Nevada,Jonesfurt,3278 Stone Hills Apt. 789
+CA0172,CU9459,67867,France,New York,West Nicholasshire,00143 Amanda Courts Apt. 980
+CA4966,CU1067,93541,Slovakia (Slovak Republic),Wisconsin,Lake Steven,5115 Odonnell Club
+CA7911,CU1067,10407,Djibouti,Washington,Lake Matthewburgh,1351 Crawford Village
+CA0905,CU1067,12711,Botswana,Indiana,Katherinefurt,631 Wilson Freeway Apt. 412
+CA5461,CU4533,83845,Tokelau,Arizona,Bennettchester,4569 Willis Trail
+CA8865,CU4533,65145,Colombia,New Jersey,Paulmouth,65944 French Pass Apt. 316
+CA8068,CU4887,06423,Burundi,Ohio,East Timothy,5474 Rachel Mission
+CA8241,CU3360,44691,Lebanon,Pennsylvania,West Christinaville,930 Savannah Forks
+CA8320,CU3360,94747,Italy,California,Smithside,524 Jennifer Knoll Apt. 506
+CA3236,CU3360,34111,Norfolk Island,Louisiana,Jeffton,224 Daniel Orchard Suite 239
+CA7068,CU1446,30373,Northern Mariana Islands,Virginia,Franklintown,396 Reed Drives
+CA6377,CU1217,58465,Belarus,Texas,Davidside,3623 Reid Turnpike Apt. 058
+CA1689,CU3842,09369,Bahamas,Wyoming,Grimestown,126 Martha Locks
+CA8625,CU3842,35754,New Zealand,Idaho,Brianside,25063 Anderson Villages Suite 539
+CA3524,CU3842,18590,South Georgia and the South Sandwich Islands,Indiana,Chandlerside,950 Wilson Shore
+CA7263,CU4521,64634,Senegal,Alabama,Lake Renee,47429 Ballard Route
+CA5140,CU4521,36529,Panama,Hawaii,Jessetown,37104 Reynolds Ferry Apt. 237
+CA1676,CU4521,95169,Sudan,Hawaii,New Nicoleberg,29533 Natalie Pass
+CA6620,CU4715,85609,French Guiana,Arkansas,East Taraville,24237 Castillo Plains Apt. 075
+CA6162,CU4715,76340,Hungary,Connecticut,West Laurahaven,2339 David Drive
+CA1537,CU5119,54265,Nauru,Virginia,Michaelville,1345 David Crest Suite 736
+CA9095,CU5119,69863,Angola,Colorado,Andersonberg,1707 Sharon Crossing Suite 084
+CA6291,CU2240,09447,Dominican Republic,North Carolina,East Jennifer,98963 Jeffrey Skyway Apt. 684
+CA0436,CU2240,77442,Montserrat,Washington,North Gregory,21107 Wesley Lodge
+CA3909,CU2240,28979,Nicaragua,New York,Port Amanda,01557 Erik Tunnel
+CA7968,CU5097,97084,Taiwan,Idaho,Brownmouth,276 Farmer Landing
+CA4337,CU5097,97609,Nepal,Alabama,New Wayneside,4426 Booth Centers
+CA5076,CU5097,91319,Croatia,Maryland,Larryside,00901 Warren Land Apt. 928
+CA9700,CU9326,10457,Cameroon,Michigan,Brandonborough,394 Smith Mount Suite 731
+CA9007,CU9326,18939,Iran,Connecticut,Port Emily,1864 Martinez Trace Suite 862
+CA1682,CU5774,20379,Lebanon,Nevada,North Kevinchester,6957 Petersen Expressway Apt. 300
+CA4054,CU5931,08630,Ghana,Illinois,Port Richardstad,4688 Smith Freeway Apt. 922
+CA1197,CU8247,75287,Kiribati,Oklahoma,North Edwardport,410 Sheri Plaza Suite 718
+CA5624,CU8247,80379,Isle of Man,Nebraska,Williamhaven,53708 Johnson Cliff
+CA4638,CU8247,54126,Burundi,Colorado,Petersonberg,7047 Snyder Springs Apt. 082
+CA1458,CU1936,87786,Norfolk Island,Connecticut,East Michaelport,36117 Rodriguez Flat Suite 328
+CA2209,CU2291,21702,Cape Verde,Rhode Island,South Andrewside,40124 Jeffrey Inlet
+CA3202,CU7723,71603,French Southern Territories,Ohio,Adamburgh,93460 Medina Spur Apt. 095
+CA9915,CU7723,33369,United States Virgin Islands,Missouri,North Davidport,126 Christine Brooks Apt. 714
+CA3877,CU7723,35574,Andorra,New Jersey,Port Thomasfurt,63164 William Islands Apt. 554
+CA7665,CU8181,19593,India,Vermont,Melissaton,63990 Raymond Loop
+CA3346,CU0149,22129,Martinique,Missouri,South Dannybury,60334 Holland Isle
+CA4070,CU0140,61554,Saint Barthelemy,Ohio,New Reginald,6799 Smith Loaf Apt. 047
+CA1935,CU0140,13758,Mozambique,Kentucky,Brittanytown,313 Nancy Islands
+CA6705,CU0140,46202,Comoros,Kansas,Greenland,69172 Gregory Gateway Apt. 696
+CA2391,CU3988,78450,Mongolia,Texas,Lambertborough,470 Schmidt Trace Apt. 475
+CA6818,CU3988,20076,Brunei Darussalam,Pennsylvania,South Nicolemouth,7700 Amy Flat Suite 256
+CA6329,CU3988,88404,French Polynesia,Georgia,West Jenniferport,205 Turner Mountain Suite 712
+CA0080,CU3162,88782,Fiji,Utah,East Laura,452 Tabitha Canyon Suite 651
+CA4763,CU3162,28341,Slovakia (Slovak Republic),Illinois,Port Mike,18122 Davis Valleys
+CA4196,CU3205,64014,Qatar,Hawaii,Millerchester,97087 Kathleen Glens Suite 983
+CA9655,CU2177,62460,Georgia,California,South Jamie,2564 Jackson Inlet Suite 174
+CA3469,CU2177,14033,Slovenia,Tennessee,Matthewburgh,46399 Ayala Path Apt. 283
+CA9177,CU2177,24729,Portugal,California,Lake Margaretborough,10629 Matthew Street Apt. 671
+CA3082,CU9953,52502,Palau,California,Robertsmouth,7375 Amber Plain Apt. 400
+CA3635,CU9953,77783,Martinique,South Dakota,Port Jeremy,985 Johnson Shoal Suite 760
+CA7285,CU8636,66810,Kiribati,Virginia,Jasonshire,80775 Jacob Club Apt. 700
+CA7716,CU8636,44834,Germany,Mississippi,Pierceview,943 Willis Mountain
+CA1816,CU8636,89438,Philippines,Colorado,East William,619 Walton Prairie Suite 432
+CA7181,CU5023,95493,Gambia,Missouri,South Brandon,877 Teresa Square Suite 007
+CA2095,CU5023,56693,Barbados,Utah,North Justin,0013 Anthony Club
+CA3362,CU4157,70084,Austria,New Mexico,Jamiemouth,618 Patricia Vista Apt. 027
+CA2950,CU4157,28408,Cocos (Keeling) Islands,Oklahoma,New Charles,430 Kelly Tunnel
+CA3480,CU6023,93650,Lithuania,Kentucky,East Angelicamouth,116 Leah Park Suite 113
+CA8245,CU6023,14173,Grenada,Ohio,Jessicashire,833 Valerie Cove
+CA4281,CU6023,13275,Denmark,Ohio,New Thomas,98380 Samuel Stream
+CA3324,CU6553,69932,American Samoa,Virginia,Allenmouth,77982 Noah Knoll
+CA8474,CU6553,85674,Andorra,Maine,Joseside,7179 Christopher Harbors
+CA1268,CU6553,47499,Luxembourg,Nevada,Camachoburgh,71243 John Mission Apt. 641
+CA4122,CU7967,34267,Cuba,Kentucky,Taylorburgh,724 Walter Walks
+CA7294,CU1962,36745,Panama,Vermont,Thomasmouth,48506 Giles Prairie Apt. 840
+CA8381,CU0214,39034,Saint Lucia,Idaho,Thomaston,1294 Thomas Drive
+CA8785,CU5515,98101,British Indian Ocean Territory (Chagos Archipelago),Utah,Stacyside,975 Bradley Avenue Suite 277
+CA1418,CU5515,80107,Niger,New Jersey,North Hannahbury,6890 Vaughn Stravenue Suite 948
+CA1178,CU7676,41847,Saint Barthelemy,Utah,Hartmanland,9972 Rachel Courts Suite 459
+CA8082,CU0869,42417,Trinidad and Tobago,Nebraska,South Amytown,47619 Jones Spur Apt. 387
+CA9697,CU0869,53032,Italy,Missouri,New Loriberg,29677 Page Lodge
+CA5368,CU0869,62007,Mauritius,Tennessee,North Kellyside,35764 Valdez Unions
+CA0692,CU8836,02191,Qatar,Vermont,Glendamouth,46866 Jesse Ville
+CA3675,CU0298,43211,Tunisia,Arkansas,Loweryshire,694 Karen Run Suite 228
+CA5197,CU0298,03408,Bulgaria,Maryland,Lake Jamestown,9243 Eric Lights Suite 312
+CA4416,CU0298,34448,Mali,Oregon,Brendaland,694 Mccoy Circle
+CA4211,CU1218,20655,United States of America,Colorado,Lake Johnshire,493 Kelsey Corners Apt. 202
+CA2578,CU1218,95668,Uzbekistan,Minnesota,North Kathyhaven,528 Michael Roads
+CA8372,CU1218,72406,Iceland,South Dakota,Michelechester,19372 Li Ridge
+CA9608,CU8152,13473,Kenya,New Jersey,Lake Jamieberg,8636 Farrell Stravenue
+CA7989,CU8152,32393,Hungary,New Jersey,Phamchester,33501 Brown Burg
+CA4235,CU8356,57142,Guyana,Idaho,South Heather,888 Steven Grove
+CA6361,CU8356,85352,Bhutan,Alabama,Micheleview,90454 Susan Pine
+CA5887,CU3812,04049,Czech Republic,Mississippi,Reevesshire,1887 Francis Junction Apt. 318
+CA2226,CU0791,75309,Ecuador,Georgia,North Chadfurt,44591 Phillip Flats Apt. 568
+CA6505,CU0791,63612,Kiribati,North Carolina,Williamfort,5664 Reilly Heights Apt. 720
+CA4033,CU0791,18928,Cuba,New Mexico,New Emily,61517 Hughes Terrace Suite 049
+CA5334,CU8051,65288,Cote d'Ivoire,Florida,Katrinaborough,7552 Christopher Forest Apt. 913
+CA7417,CU8051,06717,Palestinian Territory,Connecticut,Thomasland,52726 Nicole Summit
+CA1040,CU8051,10007,Afghanistan,Oklahoma,Rogersport,4558 Mckinney Extension
+CA9080,CU7908,38314,Peru,New Mexico,Port Victoriatown,470 Jennifer Unions Apt. 418
+CA9691,CU4997,50451,British Indian Ocean Territory (Chagos Archipelago),Oklahoma,Robinsonbury,847 Gregory Port
+CA3375,CU4997,80397,Jordan,Arizona,Stephensfurt,977 Allison Ports Suite 201
+CA5595,CU1607,93467,Romania,Iowa,Hardinview,02379 Sanders Harbors Suite 603
+CA3200,CU1607,68539,Guernsey,Louisiana,Delacruzborough,18907 Brown Ville Apt. 023
+CA3020,CU6316,70174,Kuwait,Massachusetts,Suzanneview,250 Michelle Drives Suite 280
+CA0995,CU0266,56093,Ireland,Wyoming,Jessicaport,000 White Manor
+CA4028,CU3424,27810,Madagascar,New Jersey,South Larrychester,520 Hunter Lock
+CA5211,CU3424,99940,Barbados,California,South Tara,43955 Hartman Mills Apt. 364
+CA7944,CU3424,31385,Korea,Florida,Anthonyport,982 Schmidt Hollow
+CA1260,CU9986,14297,Thailand,Minnesota,Geraldville,50884 Sara Creek
+CA2711,CU4668,37321,Bhutan,Missouri,Jeremyton,1137 Harris Parks
+CA6638,CU4668,35694,Kazakhstan,Utah,Aaronburgh,215 Murphy Plain
+CA8906,CU3846,00739,Armenia,Nebraska,West Robert,90432 Frank Loaf
+CA6593,CU3846,33827,Guinea-Bissau,Kansas,West Vincent,60585 Katelyn Track
+CA5366,CU1000,92654,Gabon,Utah,Lake Erica,230 Smith Neck Suite 871
+CA2588,CU6996,65302,India,Pennsylvania,Port James,11455 Rosario Trail Apt. 712
+CA2967,CU6996,20241,Belgium,Arkansas,Paulamouth,96554 Samantha Avenue Apt. 784
+CA8434,CU9577,34755,Estonia,Montana,Port Robert,0347 Claire Rapids
+CA8568,CU9577,18161,South Africa,Michigan,Lake Daniel,014 Raymond Locks
+CA1899,CU8743,30348,Christmas Island,Delaware,Victoriahaven,41703 Tina Cliff
+CA0219,CU8743,81281,Bahrain,Tennessee,Robertsport,9952 Jessica Landing
+CA3967,CU8743,42138,Peru,Utah,New John,2515 Jessica Terrace
+CA7834,CU7862,34656,Niue,New York,South Johnburgh,65395 Ashley Drives
+CA9647,CU7862,41683,Gabon,Wyoming,Port Angela,6574 Michelle Junctions
+CA9192,CU7862,52018,Vietnam,Hawaii,North Janetview,487 Jay Wells
