@@ -1,8 +1,8 @@
 name: ETL workflow dor group 4
 
 on:
-#  schedule:
-#    - cron: '0 */3 * * *' # Run every 3 hours
+  schedule:
+    - cron: '0 */3 * * *' # Run every 3 hours
   push:
     branches: [ main ]
 jobs:
