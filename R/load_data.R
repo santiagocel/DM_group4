@@ -8,3 +8,4 @@ RSQLite::dbWriteTable(my_connection,"ads_data",e.commerce_data, append=TRUE)
 
 
 
+
