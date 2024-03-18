@@ -1,8 +1,9 @@
 library(RSQLite)
 library(readr)
 
+
 # Connect to the database
-my_connection <- dbConnect(SQLite(), "database/database.db")
+my_connection <- dbConnect(SQLite(), "database/ecommerce.db")
 
 # Get list of CSV files in the ecommerce_data directory
 csv_files <- list.files("ecommerce_data", pattern = "\\.csv$", full.names = TRUE)
@@ -28,10 +29,10 @@ print(paste("Tables in the database:", toString(tables)))  # Debugging message
 missing_values <- apply(is.na(customer_data), 2, sum)
 
 # Check primary key
-if (length(unique(customer_data$Customer_ID)) != nrow(customer_data)) {
+if (length(unique(customers_data$Customer_ID)) != nrow(customers_data)) {
   print("Customer ID is not unique.")
 }
-
+ 
 
 # Close the database connection
 dbDisconnect(my_connection)

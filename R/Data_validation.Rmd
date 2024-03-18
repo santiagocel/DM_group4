@@ -8,13 +8,14 @@ output: html_document
 ```{r setup, include=FALSE}
 library(DBI)
 library(dplyr)
+library(RSQLite)
 ```
 
 # Data Validation
 ```{r}
 # Connect to database
+library(RSQLite)
 my_connection <- RSQLite::dbConnect(RSQLite::SQLite(), "database/ecommerce.db")
-
 ```
 
 ```{r Data Validation for Quality and Integrity : customer}
