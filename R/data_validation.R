@@ -57,14 +57,14 @@ dob_year <- as.integer(format(customers_data$date_of_birth, "%Y"))
 age <- current_year - dob_year
 valid_ages <- age >= 18 & age <= 90
 # Identify entries with DOB outside the valid age range
-#if (nrow(customers_data[!valid_ages]) > 0) {
-#  print("Dates of birth should be inside the 18 to 90 years age range.")
-#}
+if (any(!valid_ages)) {
+  print("Dates of birth should be inside the 18 to 90 years age range.")
+}
 
 # Check email format
-#if (any(!grepl("^\\S+@\\S+\\.\\S+$", customers_data$email))) {
- # print("Invalid email format")
-#}
+if (any(!grepl("^\\S+@\\S+\\.\\S+$", customers_data$email))) {
+  print("Invalid email format")
+}
 
 # Check password hash
 if (any(nchar(customers_data$password_hash) > 255)) {
@@ -112,8 +112,8 @@ if (any(nchar(customer_addresses_data$street) > 255)) {
   print("street exceeds 255 characters.")
 }
 
-na_order <- apply(is.na(orders_data), 2, sum)
 
+na_order <- apply(is.na(orders_data), 2, sum)
 # Check Primary Key
 if (length(unique(orders_data$order_id)) != nrow(orders_data)) {
   print("Order ID is not unique.")
@@ -125,28 +125,16 @@ if (!all(orders_data$customer_id %in% customers_data$customer_id)) {
 }
 
 # Check data type
-#if (any(is.na(orders_data$order_date)) | 
-#    !grepl("^\\d{4}-\\d{2}-\\d{2}$", orders_data$order_date)) {
-#  print("Invalid or NA values in order_date.")
-#}
+if (any(is.na(orders_data$order_date)) | 
+    any(!grepl("^\\d{4}-\\d{2}-\\d{2}$", orders_data$order_date))) {
+  print("Invalid or NA values in order_date.")
+}
 
 # Check order status
-#valid_order_statuses <- c('Pending', 'Processing', 'Succeed', 'Cancelled')
-#if (!all(orders_data$order_status %in% valid_order_statuses)) {
- # print("Invalid order_status detected.")
-#}
-
-# If no errors are found, print a message indicating that the data is valid
-#if (!any(is.na(na_order)) &&
- #   all(grepl("^\\d{4}-\\d{2}-\\d{2}$", orders_data$order_date) &&
-  #      !any(is.na(orders_data$order_date)&&
-   #          all(orders_data$customer_id %in% customers_data$customer_id)))) {
-  #print("Order data is valid.")
-  # Load the data into the database
-#} else {
-#  print("Order data is not valid. Please correct the errors.")
-#}
-
+valid_order_statuses <- c('Pending', 'Processing', 'Succeed', 'Cancelled')
+if (!all(orders_data$order_status %in% valid_order_statuses)) {
+  print("Invalid order_status detected.")
+}
 
 
 # Check Primary key
@@ -263,22 +251,23 @@ if (any(delivery_data$delivery_status == 'Completed' & (is.na(delivery_data$deli
 delivery_data$delivery_start_date <- as.Date(delivery_data$delivery_start_date)
 delivery_data$delivery_end_date <- as.Date(delivery_data$delivery_end_date)
 
-#if (any(delivery_data$delivery_status == 'Failed' & (is.na(delivery_data$delivery_start_date) | is.na(delivery_data$delivery_end_date) | as.numeric(difftime(delivery_data$delivery_end_date, delivery_data$delivery_start_date, units = "days")) <= 30))) {
-# stop("'Failed' deliveries have invalid dates or the duration is not more than 30 days.")
-#}
+if (any(delivery_data$delivery_status == 'Failed' & (is.na(delivery_data$delivery_start_date) | is.na(delivery_data$delivery_end_date) | as.numeric(difftime(delivery_data$delivery_end_date, delivery_data$delivery_start_date, units = "days")) <= 30))) {
+ stop("'Failed' deliveries have invalid dates or the duration is not more than 30 days.")
+}
 
 
 # Check the primary key
-#if (any(duplicated(category_data$category_id))) {
-#  stop("Duplicate category_id detected.")
-#}
+if (any(duplicated(category_data$category_id))) {
+  stop("Duplicate category_id detected.")
+}
 
 # Referential Integrity
-is_valid_parent <- category_data$parent_category_id %in% category_data$category_id | category_data$parent_category_id == 0
-
-#if (!all(is_valid_parent)) {
-#  stop("Invalid parent_category_id detected.")
-#}
+parent_category_ids = category_data[is.na(category_data$parent_category_id), 'category_id']
+if(length(unique(parent_category_ids)) != length(parent_category_ids)) {
+  print("Duplicate parent category IDs detected.")
+} else {
+  print("All parent category IDs are unique.")
+}
 
 # Validate non-null constraints
 if (any(is.na(category_data$category_name))) {
@@ -286,9 +275,15 @@ if (any(is.na(category_data$category_name))) {
 }
 
 # Hierarchical rule check
-#if (any(category_data$category_id == category_data$parent_category_id)) {
-#  stop("A category cannot be its own parent.")
-#}
+# Extract rows where category_id is not NA (subcategories)
+valid_categories <- category_data[!is.na(category_data$category_id), ]
+# Check if any category is incorrectly set as its own parent, excluding NA values from the comparison
+if (any(valid_categories$category_id == valid_categories$parent_category_id & !is.na(valid_categories$category_id) & !is.na(valid_categories$parent_category_id))) {
+  stop("A category cannot be its own parent.")
+} else {
+  print("Hierarchical integrity is maintained.")
+}
+
 
 # Check the primary key
 if (any(duplicated(product_data$product_id))) {
@@ -357,13 +352,14 @@ if (any(nchar(supplier_data$supplier_street) > 255)) {
 }
 
 # Check format
+# Baisc email format check
 if (any(!grepl("^\\S+@\\S+\\.\\S+$", supplier_data$supplier_email))) {
   stop("Invalid supplier_email format detected.")
 }
-# A very basic phone number check (adjust regex as needed for specific formats)
-#if (any(!grepl("^\\+?\\d{10,20}$", supplier_data$supplier_phone))) {
-#  stop("Invalid supplier_phone format detected.")
-#}
+# Basic phone number check
+if (any(!grepl("^\\+?\\d{10,20}$", supplier_data$supplier_phone))){
+  stop("Invalid supplier_phone format detected.")
+}
 
 
 # Check composite primary key
