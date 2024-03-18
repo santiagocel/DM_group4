@@ -28,7 +28,7 @@ jobs:
           Rscript -e 'install.packages(c("ggplot2","dplyr","readr","RSQLite"))'
       - name: Execute data validation
         run: |
-          Rscript R/G4.R
+          Rscript R/data_validation.R
       - name: Execute data analysis
         run: |
           Rscript R/load_data.R
