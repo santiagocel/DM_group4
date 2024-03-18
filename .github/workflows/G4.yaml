@@ -32,7 +32,7 @@ jobs:
         continue-on-error: true
       - name: Execute data analysis
         run: |
-          Rscript R/data_analysis.Rmd
+          Rscript R/data_analysis.R
         continue-on-error: true
       - name: Add files
         run: |
