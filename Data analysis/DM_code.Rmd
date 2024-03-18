@@ -1,0 +1,573 @@
+---
+title: "DM Analysis"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(RSQLite)
+library(DBI)
+library(lubridate)
+
+# Load the scales package for formatting scales and axes
+library(scales)
+```
+
+## Create and Connect Database
+```{r}
+# Define the tables to drop
+tables_to_drop <- c("ads", "category", "customer_address", "customer", 
+                     "delivery", "orders", "orders_details", "product", 
+                     "supplier", "supply", "`transaction`")
+
+# Connect to the database
+my_connection <- RSQLite::dbConnect(RSQLite::SQLite(), "e_commerce.db")
+
+# Drop each table
+for (table_name in tables_to_drop) {
+  dbExecute(my_connection, paste("DROP TABLE IF EXISTS", table_name))
+}
+
+# After dropping tables, you can proceed to create and load new tables
+sql_commands <- readLines("Data analysis/Schema.sql", warn = FALSE)
+for (sql_cmd in sql_commands) {
+  tryCatch({
+    dbExecute(my_connection, sql_cmd)
+  }, error = function(e) {
+    # Print error message without stopping the execution
+    #cat("Error occurred: ", conditionMessage(e), "\n")
+  })
+}
+```
+
+## Import Data
+```{r}
+ads = readr::read_csv('ecommerce_data/ads_data.csv', col_types = cols(ad_start_date = "c", ad_end_date = "c"))
+category = readr::read_csv('ecommerce_data/category_data.csv')
+customer_address = readr::read_csv('ecommerce_data/customer_addresses_data.csv')
+customer = readr::read_csv('ecommerce_data/customers_data.csv', col_types = cols(date_of_birth = "c"))
+delivery = readr::read_csv('ecommerce_data/delivery_data.csv', col_types = cols(delivery_start_date = "c", delivery_end_date = "c"))
+orders_details = readr::read_csv('ecommerce_data/order_details_data.csv')
+orders = readr::read_csv('ecommerce_data/orders_data.csv', col_types = cols(order_date = "c"))
+product = readr::read_csv('ecommerce_data/product_data.csv')
+supplier = readr::read_csv('ecommerce_data/supplier_data.csv')
+supply = readr::read_csv('ecommerce_data/supply_data.csv')
+transaction = readr::read_csv('ecommerce_data/transactions_data.csv', col_types = cols(transaction_time = "c"))
+```
+
+## Data Quality Check before writing into database
+```{r}
+# Ads
+str(ads) 
+ads$ad_status = as.factor(ads$ad_status)
+str(ads)
+summary(ads)
+
+# Category
+# Missing value in parent_category_id is reasonable if category_id is parent_category_id itself
+str(category)
+summary(category)
+
+# Customer_address
+str(customer_address)
+customer_address$country = as.factor(customer_address$country)
+customer_address$state = as.factor(customer_address$state)
+customer_address$city = as.factor(customer_address$city)
+str(customer_address)
+summary(customer_address)
+
+# Customer
+str(customer)
+customer$gender = as.factor(customer$gender)
+str(customer)
+summary(customer)
+
+# Delivery
+# It's reasonable to have missing values for delivery_start_date and delivery_end_date in "Failed" and "Not_Delivered" delivery_status
+str(delivery)
+delivery$delivery_status = as.factor(delivery$delivery_status)
+str(delivery)
+summary(delivery)
+
+# orders
+str(orders)
+orders$order_status = as.factor(orders$order_status)
+str(orders)
+summary(orders)
+
+# orders_Details
+str(orders_details)
+summary(orders_details)
+
+# Product
+str(product)
+summary(product)
+
+# Supplier
+str(supplier)
+supplier$supplier_phone = as.character(supplier$supplier_phone)
+supplier$supplier_country = as.factor(supplier$supplier_country)
+supplier$supplier_state = as.factor(supplier$supplier_state)
+supplier$supplier_city = as.factor(supplier$supplier_city)
+str(supplier)
+summary(supplier)
+
+# Supply
+str(supply)
+summary(supply)
+
+# Transaction
+str(transaction)
+# Transform transaction_time without the float
+transaction$transaction_time = sub("\\..*", "", transaction$transaction_time)
+transaction$payment_method = as_factor(transaction$payment_method)
+transaction$transaction_status = as_factor(transaction$transaction_status)
+str(transaction)
+summary(transaction)
+```
+
+## Write them to the database 
+```{r}
+RSQLite::dbWriteTable(my_connection,"ads",ads,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"category",category,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"customer_address",customer_address,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"customer",customer,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"delivery",delivery,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"orders",orders,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"orders_details",orders_details,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"product",product,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"supplier",supplier,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"supply",supply,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"transaction",transaction,append = TRUE,overwrite=FALSE)
+```
+
+## Database check
+```{r}
+# Tables check to see if there's any error in the data import stage
+ads_check = tbl(my_connection, "ads")
+ads_check
+category_check = tbl(my_connection, "category")
+category_check
+customer_address_check = tbl(my_connection, "customer_address")
+customer_address_check
+customer_check = tbl(my_connection, "customer")
+customer_check
+delivery_check = tbl(my_connection, "delivery")
+delivery_check
+orders_check = tbl(my_connection, "orders")
+orders_check
+orders_details_check = tbl(my_connection, "orders_details")
+orders_details_check
+product_check = tbl(my_connection, "product")
+product_check
+supplier_check = tbl(my_connection, "supplier")
+supplier_check
+supply_check = tbl(my_connection, "supply")
+supply_check
+transaction_check = tbl(my_connection, "transaction")
+transaction_check
+```
+It seems no data structure errors in this stage.
+
+---------------------------------------------------------------------------
+
+# Analysis
+
+## 1 Product Popularity 
+```{r}
+# Execute SQL query to count the frequency of each product_id and retrieve top 10 popular products
+top_10_popular_products <- dbGetQuery(my_connection, "
+  SELECT p.product_name, 
+         SUM(od.sub_quantity) AS Frequency
+  FROM orders_details od
+  JOIN product p ON od.product_id = p.product_id
+  GROUP BY od.product_id, p.product_name
+  ORDER BY Frequency DESC
+  LIMIT 10
+")
+
+# Plot the bar chart of the top 10 popular products with product names on the x-axis
+ggplot(top_10_popular_products, aes(x = reorder(product_name, -Frequency), y = Frequency)) +
+  geom_bar(stat = "identity", fill = "#6495ED") +
+  geom_text(aes(label = Frequency), vjust = -0.5, size = 3, color = "black") +  # Add numeric labels on top of bars
+  labs(title = "Top 10 Popular Products",
+       x = "Product Name",
+       y = "Amount Consumed") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## 2 Product Sales Analysis 
+```{r}
+# Execute SQL query to calculate total revenue for each product and retrieve top 10 products
+product_total_revenue <- dbGetQuery(my_connection, "
+  SELECT product.product_id, 
+         product.product_name,
+         SUM(CASE 
+               WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+               ELSE orders_details.sub_quantity * product.product_price
+             END) AS total_revenue
+  FROM orders_details
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN orders ON orders_details.order_id = orders.order_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  GROUP BY product.product_id
+  ORDER BY total_revenue DESC
+  LIMIT 10
+")
+
+# Create the ggplot for total revenue with product names on the x-axis
+ggplot(product_total_revenue, aes(x = reorder(product_name, desc(total_revenue)), y = total_revenue)) +
+  geom_bar(stat = "identity", fill = "#6495ED") +
+  labs(title = "Total Sales Figures for Top 10 Products",
+       x = "Product Name",
+       y = "Total Sales") +
+  scale_y_continuous(labels = scales::comma, breaks = seq(0, max(product_total_revenue$total_revenue), by = 25000)) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## 3 Category Sales & Popularity Analysis
+```{r}
+# Category Popularity
+category_popularity <- dbGetQuery(my_connection, "
+SELECT SUBSTRING(product.category_id, 1, 6) AS category,
+       SUM(orders_details.sub_quantity) AS total_quantity,
+       category.category_name
+FROM product
+JOIN orders_details ON product.product_id = orders_details.product_id
+JOIN category ON SUBSTRING(product.category_id, 1, 6) = category.category_id
+GROUP BY SUBSTRING(product.category_id, 1, 6), category.category_name
+")
+
+# Category Sales
+category_sales <- dbGetQuery(my_connection, "
+SELECT SUBSTRING(product.category_id, 1, 6) AS category,
+       SUM(CASE
+               WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+               ELSE orders_details.sub_quantity * product.product_price
+           END) AS total_sales,
+       category.category_name
+FROM product
+JOIN orders_details ON product.product_id = orders_details.product_id
+JOIN orders ON orders_details.order_id = orders.order_id
+JOIN customer ON orders.customer_id = customer.customer_id
+JOIN category ON SUBSTRING(product.category_id, 1, 6) = category.category_id
+GROUP BY SUBSTRING(product.category_id, 1, 6), category.category_name
+")
+
+# Combine category sales and category popularity data, removing duplicate category_name column
+combined_data <- inner_join(category_sales, category_popularity %>% select(-category_name), by = "category")
+
+# Create the plot
+ggplot(combined_data, aes(x = category_name)) +
+  geom_bar(aes(y = total_sales), stat = "identity", fill = "#6495ED") +  # Bar plot representing category sales
+  geom_line(aes(y = total_quantity * 1000), color = "red", group = 1) +  # Line plot representing category popularity, multiplied by 1000 just for demonstration of comparison on the same plot
+  scale_y_continuous(name = "Total Sales", sec.axis = sec_axis(~./1000, name = "Popularity")) +  # Set dual y-axes, representing sales and popularity
+  labs(title = "Category Sales and Popularity Analysis",
+       x = "Category", y = "Total Sales",) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## 4 Gender & Category Visualization
+```{r}
+# Execute SQL query in R
+category_gender_sales <- dbGetQuery(my_connection, "
+SELECT SUBSTRING(product.category_id, 1, 6) AS category,
+       customer.gender,
+       SUM(CASE
+               WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+               ELSE orders_details.sub_quantity * product.product_price
+           END) AS total_sales,
+       category.category_name
+FROM product
+JOIN orders_details ON product.product_id = orders_details.product_id
+JOIN orders ON orders_details.order_id = orders.order_id
+JOIN customer ON orders.customer_id = customer.customer_id
+JOIN category ON SUBSTRING(product.category_id, 1, 6) = category.category_id
+GROUP BY SUBSTRING(product.category_id, 1, 6), category.category_name, customer.gender
+")
+
+# Plot gender-category sales relationship
+ggplot(category_gender_sales, aes(x = category_name, y = total_sales, fill = gender)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Gender & Category Sales Analysis",
+       x = "Category Name",
+       y = "Total Sales",
+       fill = "Gender") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+
+## 5 Age Visualization
+```{r}
+customer1 <- dbGetQuery(my_connection, "
+  SELECT customer.*,
+  FLOOR((julianday('now') - julianday(customer.date_of_birth)) / 365.25) AS age1
+  FROM customer")
+
+# Plot the distribution of Age
+ggplot(customer1, aes(x = age1)) +
+  geom_histogram(aes(y = after_stat(density)), fill = "#6495ED", binwidth = 5) +
+  geom_density(color = "red") +
+  labs(title = "Histogram and Density Plot of Age", x = "Age", y = "Density") +
+  scale_x_continuous(breaks = seq(0, max(customer1$age1), by = 5)) +
+  theme_minimal()
+```
+
+## 6 Age & Category Visualization (pass)
+```{r}
+# Execute SQL query to get relevant data
+customer_data <- dbGetQuery(my_connection, "
+  SELECT FLOOR((julianday('now') - julianday(customer.date_of_birth)) / 365.25) AS age,
+         SUM(CASE
+                 WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+                 ELSE orders_details.sub_quantity * product.product_price
+             END) AS total_sales,
+         SUBSTRING(product.category_id, 1, 6) AS category,
+         category.category_name
+  FROM customer
+  JOIN orders ON customer.customer_id = orders.customer_id
+  JOIN orders_details ON orders.order_id = orders_details.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN category ON SUBSTRING(product.category_id, 1, 6) = category.category_id
+  GROUP BY age, customer.gender, category, category.category_name
+")
+
+# Define age groups with intervals of 10 years
+customer_data$age_group <- cut(customer_data$age, breaks = seq(0, max(customer_data$age) + 10, by = 10))
+
+# Plot Age & Category Visualization
+ggplot(customer_data, aes(x = age_group, y = total_sales, fill = category_name)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "Total Sales by Age Group and Category",
+       x = "Age Group",
+       y = "Total Sales",
+       fill = "Category") +
+  theme_minimal()
+```
+
+## 7 Region Revenue Analysis
+```{r}
+# Execute SQL query to calculate total revenue for each state
+state_total_revenue <- dbGetQuery(my_connection, "
+  SELECT customer_address.state, 
+         SUM(
+           CASE 
+             WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+             ELSE orders_details.sub_quantity * product.product_price
+           END
+         ) AS total_revenue
+  FROM orders
+  JOIN orders_details ON orders.order_id = orders_details.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  JOIN customer_address ON customer.customer_id = customer_address.customer_id
+  GROUP BY customer_address.state
+")
+
+# Select the top 10 states by total revenue
+top_10_state_total_revenue <- state_total_revenue %>%
+  arrange(desc(total_revenue)) %>%
+  head(10)
+
+# Plot the total revenue for the top 10 states
+ggplot(top_10_state_total_revenue, aes(x = reorder(state, -total_revenue), y = total_revenue)) + 
+  geom_bar(stat = "identity", fill = "#6495ED") +
+  labs(title = "Top 10 States by Total Consumption",
+       x = "State",
+       y = "Total Consumption") +
+  theme_minimal() +
+  scale_y_continuous(labels = scales::comma, breaks = seq(0, max(top_10_state_total_revenue$total_revenue), by = 250000)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+```
+
+--------------------------------------------------------------------
+
+# Time Analysis
+
+## 8 Total Order Value Trend Analysis
+```{r}
+# Convert Order_Date to month-year format directly in SQL and calculate total order value per month
+total_order_value_by_month <- dbGetQuery(my_connection, "
+  SELECT strftime('%Y-%m', orders.order_date) AS month_year,
+         SUM(
+           CASE 
+             WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+             ELSE orders_details.sub_quantity * product.product_price
+           END
+         ) AS total_order_value
+  FROM orders
+  JOIN orders_details ON orders.order_id = orders_details.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  GROUP BY month_year
+")
+
+# Plot the trend of total order value over time
+ggplot(total_order_value_by_month, aes(x = as.Date(paste0(month_year, "-01"), "%Y-%m-%d"), y = total_order_value, group = 1)) +
+  geom_line(color = "#6495ED", size = 1, aes(group = 1)) +
+  labs(title = "Trend of Total Order Value Over Time",
+       x = "Month",
+       y = "Total Order Value") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  scale_y_continuous(labels = scales::dollar) +  # Adjust y-axis labels to use dollar formatting
+  scale_x_date(labels = scales::date_format("%b %Y")) +  # Format x-axis labels as Sep 2023
+  theme(legend.position = "none")  # Remove legend to avoid redundancy
+```
+
+## 9 Average Order Value Trend Analysis 
+```{r}
+# Convert Order_Date to month-year format directly in SQL and calculate average order value per month
+average_order_value_by_month <- dbGetQuery(my_connection, "
+  SELECT strftime('%Y-%m', orders.order_date) AS month_year,
+         AVG(
+           CASE 
+             WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+             ELSE orders_details.sub_quantity * product.product_price
+           END
+         ) AS average_order_value
+  FROM orders
+  JOIN orders_details ON orders.order_id = orders_details.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  GROUP BY month_year
+")
+
+# Plot the trend of average order value over time
+ggplot(average_order_value_by_month, aes(x = as.Date(paste0(month_year, "-01"), "%Y-%m-%d"), y = average_order_value, group = 1)) +
+  geom_line(color = "#6495ED", size = 1, aes(group = 1)) +
+  labs(title = "Trend of Average Order Value Over Time",
+       x = "Month",
+       y = "Average Order Value") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  scale_y_continuous(labels = scales::dollar) +  # Adjust y-axis labels to use dollar formatting
+  scale_x_date(labels = scales::date_format("%b %Y")) +  # Format x-axis labels as Sep 2023
+  theme(legend.position = "none")  # Remove legend to avoid redundancy
+
+```
+
+## 10 Category Sales Trend Analysis 
+```{r}
+# Execute SQL query in R
+category_sales_time <- dbGetQuery(my_connection, "
+SELECT strftime('%Y-%m', orders.order_date) AS category_month_year,
+       SUBSTRING(product.category_id, 1, 6) AS category,
+       SUM(CASE
+               WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+               ELSE orders_details.sub_quantity * product.product_price
+           END) AS total_sales,
+       category.category_name
+FROM product
+JOIN orders_details ON product.product_id = orders_details.product_id
+JOIN orders ON orders_details.order_id = orders.order_id
+JOIN customer ON orders.customer_id = customer.customer_id
+JOIN category ON SUBSTRING(product.category_id, 1, 6) = category.category_id
+GROUP BY strftime('%Y-%m', orders.order_date), SUBSTRING(product.category_id, 1, 6), category.category_name
+")
+
+# Convert category_month_year to Date format
+category_sales_time$category_month_year <- as.Date(paste0(category_sales_time$category_month_year, "-01"))
+
+# Plot the line chart of category sales over time for the five main categories
+ggplot(category_sales_time, aes(x = category_month_year, y = total_sales, color = category_name)) + geom_line() +
+  labs(title = "Category Sales Analysis Over Time",
+       x = "Month",
+       y = "Total Sales",
+       color = "Category Name") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  scale_x_date(date_labels = "%b %Y") +
+  scale_y_continuous(labels = scales::comma)
+```
+
+## 11 Membership Revenue Trend Analysis
+```{r}
+# Execute SQL query in the database and fetch the results
+membership_revenue_by_month <- dbGetQuery(my_connection, "
+  SELECT strftime('%Y-%m', orders.order_date) AS membership_month_year,
+         customer.membership,
+         SUM(CASE 
+               WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+               ELSE orders_details.sub_quantity * product.product_price
+             END) AS total_revenue
+  FROM orders
+  JOIN orders_details ON orders.order_id = orders_details.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  GROUP BY membership_month_year, customer.membership
+")
+
+# Convert the date column to a date-time format
+membership_revenue_by_month$membership_month_year <- ym(membership_revenue_by_month$membership_month_year)
+
+# Plot the trend of membership revenue over time
+ggplot(membership_revenue_by_month, aes(x = membership_month_year, y = total_revenue, group = membership, color = membership)) +
+  geom_line(size = 1) +
+  labs(title = "Trend of Membership Consumption Over Time",
+       x = "Month",
+       y = "Total Consumption",
+       color = "Membership Status") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  scale_x_date(date_labels = "%b %Y") +
+  scale_y_continuous(labels = scales::comma)
+```
+
+## 12 Total Product Revenue Analysis by Rate 
+```{r}
+# Query to retrieve product revenue by rate category
+product_revenue_by_rate <- dbGetQuery(my_connection, "
+  SELECT strftime('%Y-%m', orders.order_date) AS product_month_year,
+         SUM(
+           CASE 
+             WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+             ELSE orders_details.sub_quantity * product.product_price
+           END
+         ) AS total_revenue,
+         CASE
+           WHEN product.rate_value BETWEEN 1 AND 2 THEN '1-2'
+           WHEN product.rate_value BETWEEN 2 AND 3 THEN '2-3'
+           WHEN product.rate_value BETWEEN 3 AND 4 THEN '3-4'
+           WHEN product.rate_value BETWEEN 4 AND 5 THEN '4-5'
+           ELSE 'Unknown'
+         END AS rate_category
+  FROM orders_details
+  JOIN orders ON orders_details.order_id = orders.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  GROUP BY product_month_year, rate_category
+")
+
+# Convert the date column to a date-time format
+product_revenue_by_rate$product_month_year <- ym(product_revenue_by_rate$product_month_year)
+
+# Plot the trend of product revenue by rate category over time
+ggplot(product_revenue_by_rate, aes(x = product_month_year, y = total_revenue, group = rate_category, color = rate_category)) +
+  geom_line(size = 1) +
+  labs(title = "Product Sales Trend by Rate Category Over Time",
+       x = "Month",
+       y = "Total Product Sales",
+       color = "Rate Category") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  scale_x_date(date_labels = "%b %Y") +
+  scale_y_continuous(labels = scales::comma)
+```
+
+
+## Disconnect from the database
+```{r}
+dbDisconnect(my_connection)
+```
+
