@@ -316,15 +316,12 @@ if (any(duplicated(supplier_data$supplier_id))) {
 }
 
 # Check the unique 
-if (any(duplicated(supplier_data$supplier_phone))) {
-  stop("Duplicate supplier_phone detected.")
-}
 if (any(duplicated(supplier_data$supplier_email))) {
   stop("Duplicate supplier_email detected.")
 }
 
 # Validate non-null constraints
-required_fields <- c("supplier_id", "supplier_phone", "supplier_name", "supplier_email")
+required_fields <- c("supplier_id", "supplier_name", "supplier_email")
 if (any(sapply(supplier_data[required_fields], is.na))) {
   stop("Null values found in required supplier fields.")
 }
