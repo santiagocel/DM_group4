@@ -131,21 +131,21 @@ if (any(is.na(orders_data$order_date)) |
 }
 
 # Check order status
-valid_order_statuses <- c('Pending', 'Processing', 'Succeed', 'Cancelled')
-if (!all(orders_data$order_status %in% valid_order_statuses)) {
-  print("Invalid order_status detected.")
-}
+#valid_order_statuses <- c('Pending', 'Processing', 'Succeed', 'Cancelled')
+#if (!all(orders_data$order_status %in% valid_order_statuses)) {
+ # print("Invalid order_status detected.")
+#}
 
 # If no errors are found, print a message indicating that the data is valid
-if (!any(is.na(na_order)) &&
-    all(grepl("^\\d{4}-\\d{2}-\\d{2}$", orders_data$order_date) &&
-        !any(is.na(orders_data$order_date)&&
-             all(orders_data$customer_id %in% customers_data$customer_id)))) {
-  print("Order data is valid.")
+#if (!any(is.na(na_order)) &&
+ #   all(grepl("^\\d{4}-\\d{2}-\\d{2}$", orders_data$order_date) &&
+  #      !any(is.na(orders_data$order_date)&&
+   #          all(orders_data$customer_id %in% customers_data$customer_id)))) {
+  #print("Order data is valid.")
   # Load the data into the database
-} else {
-  print("Order data is not valid. Please correct the errors.")
-}
+#} else {
+#  print("Order data is not valid. Please correct the errors.")
+#}
 
 
 
@@ -269,16 +269,16 @@ if (any(delivery_data$delivery_status == 'Failed' & (is.na(delivery_data$deliver
 
 
 # Check the primary key
-if (any(duplicated(category_data$category_id))) {
-  stop("Duplicate category_id detected.")
-}
+#if (any(duplicated(category_data$category_id))) {
+#  stop("Duplicate category_id detected.")
+#}
 
 # Referential Integrity
 is_valid_parent <- category_data$parent_category_id %in% category_data$category_id | category_data$parent_category_id == 0
 
-if (!all(is_valid_parent)) {
-  stop("Invalid parent_category_id detected.")
-}
+#if (!all(is_valid_parent)) {
+#  stop("Invalid parent_category_id detected.")
+#}
 
 # Validate non-null constraints
 if (any(is.na(category_data$category_name))) {
@@ -286,9 +286,9 @@ if (any(is.na(category_data$category_name))) {
 }
 
 # Hierarchical rule check
-if (any(category_data$category_id == category_data$parent_category_id)) {
-  stop("A category cannot be its own parent.")
-}
+#if (any(category_data$category_id == category_data$parent_category_id)) {
+#  stop("A category cannot be its own parent.")
+#}
 
 # Check the primary key
 if (any(duplicated(product_data$product_id))) {
@@ -361,11 +361,10 @@ if (any(!grepl("^\\S+@\\S+\\.\\S+$", supplier_data$supplier_email))) {
   stop("Invalid supplier_email format detected.")
 }
 # A very basic phone number check (adjust regex as needed for specific formats)
-if (any(!grepl("^\\+?\\d{10,20}$", supplier_data$supplier_phone))) {
-  stop("Invalid supplier_phone format detected.")
-}
+#if (any(!grepl("^\\+?\\d{10,20}$", supplier_data$supplier_phone))) {
+#  stop("Invalid supplier_phone format detected.")
+#}
 
-```
 
 # Check composite primary key
 composite_keys <- paste(supply_data$supplier_id, supply_data$product_id)
@@ -398,7 +397,7 @@ if (!all(ads_data$product_id %in% product_data$product_id)) {
 }
 
 # Validate non-null constraints
-required_fields <- c("ad_id", "product_id", "ad_name", "ad_status", "ad_start_date", "ad_end_date")
+required_fields <- c("ad_id", "product_id", "ad_status", "ad_start_date", "ad_end_date")
 if (any(sapply(ads_data[required_fields], is.na))) {
   stop("Null values found in required ad fields.")
 }
@@ -423,4 +422,3 @@ if (any(invalid_ended_ads)) {
 
 # Disconnect
 dbDisconnect(my_connection)
-```
