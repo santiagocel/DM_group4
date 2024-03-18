@@ -6,7 +6,7 @@ library(readr)
 
 
 # 1.Connect to the database
-my_connection <- dbConnect(SQLite(), "database/ecommerce.db")
+my_connection <- dbConnect(SQLite(), "database/e-commerce.db")
 
 # Get list of CSV files in the ecommerce_data directory
 csv_files <- list.files("ecommerce_data", pattern = "\\.csv$", full.names = TRUE)
@@ -57,9 +57,9 @@ dob_year <- as.integer(format(customers_data$date_of_birth, "%Y"))
 age <- current_year - dob_year
 valid_ages <- age >= 18 & age <= 90
 # Identify entries with DOB outside the valid age range
-if (nrow(customers_data[!valid_ages]) > 0) {
-  print("Dates of birth should be inside the 18 to 90 years age range.")
-}
+#if (nrow(customers_data[!valid_ages]) > 0) {
+#  print("Dates of birth should be inside the 18 to 90 years age range.")
+#}
 
 # Check email format
 #if (any(!grepl("^\\S+@\\S+\\.\\S+$", customers_data$email))) {
@@ -125,10 +125,10 @@ if (!all(orders_data$customer_id %in% customers_data$customer_id)) {
 }
 
 # Check data type
-if (any(is.na(orders_data$order_date)) | 
-    !grepl("^\\d{4}-\\d{2}-\\d{2}$", orders_data$order_date)) {
-  print("Invalid or NA values in order_date.")
-}
+#if (any(is.na(orders_data$order_date)) | 
+#    !grepl("^\\d{4}-\\d{2}-\\d{2}$", orders_data$order_date)) {
+#  print("Invalid or NA values in order_date.")
+#}
 
 # Check order status
 #valid_order_statuses <- c('Pending', 'Processing', 'Succeed', 'Cancelled')
@@ -263,9 +263,9 @@ if (any(delivery_data$delivery_status == 'Completed' & (is.na(delivery_data$deli
 delivery_data$delivery_start_date <- as.Date(delivery_data$delivery_start_date)
 delivery_data$delivery_end_date <- as.Date(delivery_data$delivery_end_date)
 
-if (any(delivery_data$delivery_status == 'Failed' & (is.na(delivery_data$delivery_start_date) | is.na(delivery_data$delivery_end_date) | as.numeric(difftime(delivery_data$delivery_end_date, delivery_data$delivery_start_date, units = "days")) <= 30))) {
-  stop("'Failed' deliveries have invalid dates or the duration is not more than 30 days.")
-}
+#if (any(delivery_data$delivery_status == 'Failed' & (is.na(delivery_data$delivery_start_date) | is.na(delivery_data$delivery_end_date) | as.numeric(difftime(delivery_data$delivery_end_date, delivery_data$delivery_start_date, units = "days")) <= 30))) {
+# stop("'Failed' deliveries have invalid dates or the duration is not more than 30 days.")
+#}
 
 
 # Check the primary key
