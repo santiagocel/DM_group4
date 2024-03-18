@@ -3,7 +3,7 @@ library(readr)
 
 
 # Connect to the database
-my_connection <- dbConnect(SQLite(), "database/ecommerce.db")
+my_connection <- dbConnect(SQLite(), "database/e-commerce.db")
 
 # Get list of CSV files in the ecommerce_data directory
 csv_files <- list.files("ecommerce_data", pattern = "\\.csv$", full.names = TRUE)
@@ -26,13 +26,14 @@ for (csv_file in csv_files) {
 tables <- dbListTables(my_connection)
 print(paste("Tables in the database:", toString(tables)))  # Debugging message
 
-missing_values <- apply(is.na(customer_data), 2, sum)
+missing_values <- apply(is.na(customers_data), 2, sum)
 
 # Check primary key
-if (length(unique(customers_data$Customer_ID)) != nrow(customers_data)) {
+if (length(unique(customers_data$customer_id)) != nrow(customers_data)) {
   print("Customer ID is not unique.")
 }
  
 
 # Close the database connection
 dbDisconnect(my_connection)
+
