@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS customer_address (
     customer_address_id INT PRIMARY KEY NOT NULL,
     customer_id INT NOT NULL,
     zip_code CHAR(10) NOT NULL,
-    country CHAR(20) NOT NULL,
+    country CHAR(50) NOT NULL,
     state VARCHAR(50) NOT NULL,
     city VARCHAR(50) NOT NULL,
     street VARCHAR(255) NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE supplier (
     supplier_name VARCHAR (100) NOT NULL, 
     supplier_email VARCHAR (255) NOT NULL UNIQUE, 
     supplier_zip_code CHAR (10) NOT NULL,  
-    supplier_country CHAR (20) NOT NULL,  
+    supplier_country CHAR (50) NOT NULL,  
     supplier_state VARCHAR (50) NOT NULL,  
     supplier_city VARCHAR (50) NOT NULL,  
     supplier_street VARCHAR (255) NOT NULL 
