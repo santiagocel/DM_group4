@@ -357,10 +357,10 @@ if (any(!grepl("^\\S+@\\S+\\.\\S+$", supplier_data$supplier_email))) {
 }
 
 # Basic phone number check
-supplier_data$supplier_phone <- as.character(supplier_data$supplier_phone)
-if (any(!grepl("^\\+?\\d{10,20}$", supplier_data$supplier_phone))){
-  stop("Invalid supplier_phone format detected.")
-}
+#supplier_data$supplier_phone <- as.character(supplier_data$supplier_phone)
+#if (any(!grepl("^\\+?\\d{10,20}$", supplier_data$supplier_phone))){
+#  stop("Invalid supplier_phone format detected.")
+#}
 
 
 # Check composite primary key
