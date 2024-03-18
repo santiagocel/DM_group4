@@ -335,8 +335,8 @@ if (any(nchar(supplier_data$supplier_zip_code) > 10)) {
   print("zipcode exceeds 10 characters.")
 }
 
-if (any(nchar(supplier_data$supplier_country) > 20)) {
-  print("country exceeds 20 characters.")
+if (any(nchar(supplier_data$supplier_country) > 50)) {
+  print("country exceeds 50 characters.")
 }
 
 if (any(nchar(supplier_data$supplier_state) > 50)) {
