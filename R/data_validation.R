@@ -5,7 +5,7 @@ library(readr)
 
 
 # 1.Connect to the database
-my_connection <- dbConnect(SQLite(), "database/e_commerce.db")
+my_connection <- dbConnect(SQLite(),"database/an_e_commerce.db")
 
 # Get list of CSV files in the ecommerce_data directory
 csv_files <- list.files("ecommerce_data", pattern = "\\.csv$", full.names = TRUE)
