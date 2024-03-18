@@ -1,4 +1,3 @@
-
 library(DBI)
 library(dplyr)
 library(RSQLite)
@@ -6,7 +5,7 @@ library(readr)
 
 
 # 1.Connect to the database
-my_connection <- dbConnect(SQLite(), "database/e-commerce.db")
+my_connection <- dbConnect(SQLite(), "database/e_commerce.db")
 
 # Get list of CSV files in the ecommerce_data directory
 csv_files <- list.files("ecommerce_data", pattern = "\\.csv$", full.names = TRUE)
@@ -356,10 +355,12 @@ if (any(nchar(supplier_data$supplier_street) > 255)) {
 if (any(!grepl("^\\S+@\\S+\\.\\S+$", supplier_data$supplier_email))) {
   stop("Invalid supplier_email format detected.")
 }
+
 # Basic phone number check
-#if (any(!grepl("^\\+?\\d{10,20}$", supplier_data$supplier_phone))){
-#  stop("Invalid supplier_phone format detected.")
-#}
+supplier_data$supplier_phone <- as.character(supplier_data$supplier_phone)
+if (any(!grepl("^\\+?\\d{10,20}$", supplier_data$supplier_phone))){
+  stop("Invalid supplier_phone format detected.")
+}
 
 
 # Check composite primary key
@@ -418,3 +419,4 @@ if (any(invalid_ended_ads)) {
 
 # Disconnect
 dbDisconnect(my_connection)
+
