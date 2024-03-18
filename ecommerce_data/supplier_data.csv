@@ -1,161 +1,81 @@
-supplier_id,supplier_name,supplier_phone,supplier_email,supplier_address
-SU9516,"Ruiz, Huang and Brown",455.561.9636x151,blacktammy@example.com,"5555 Thomas Mountain Suite 773
-Bushshire, DE 49830"
-SU0997,Wilson-Williams,4649597378,marquezjames@example.com,"74376 Reynolds Drive Apt. 443
-Travisberg, FL 79518"
-SU2079,"Lane, Rogers and Warren",+1-293-664-8498x47393,phillipscharles@example.org,"12946 Paul Mountains
-Lake Amandachester, ID 23999"
-SU4310,Gibson-Gibbs,298.756.4415x0783,ddavis@example.org,"10746 Wilson Bypass Apt. 529
-North Maria, ME 99383"
-SU4258,Fernandez LLC,375.521.6567x122,qlowe@example.org,"8754 Stone Route Apt. 803
-East Steven, VI 86036"
-SU6065,Willis Group,001-548-783-2385x951,fernandezsamantha@example.com,"802 Heather Point
-South Stevenmouth, RI 76922"
-SU0701,"Guzman, Parker and Graves",753.698.9094x397,williamwhite@example.com,"0770 Olivia Court
-Franciscoport, NV 36829"
-SU8784,"Mcgrath, Wilson and Myers",6673875269,irobinson@example.com,"46086 Francis Route
-North Barbaraside, MP 45403"
-SU0260,Ibarra Group,995-627-6635,brianna21@example.org,"Unit 1230 Box 9604
-DPO AE 88108"
-SU3815,Mills Inc,(711)758-6442,ericksonalex@example.com,"37976 Lindsey Divide
-Port Alexander, GU 66287"
-SU8020,"Love, Norton and Taylor",202.634.1737x90894,lreyes@example.com,"33622 Ingram Inlet
-Carpentertown, AR 36396"
-SU4543,"Harper, Parks and Cobb",+1-447-655-0529,stephentorres@example.com,"36019 Wyatt Neck
-East Kelsey, MD 88078"
-SU0472,"Bowen, Gibson and Martinez",+1-273-737-6315x19299,sheliaroach@example.com,"94041 Velasquez Causeway
-Cisnerosfurt, VI 88798"
-SU5453,"Guzman, White and Roth",001-952-783-4690x381,jenniferlee@example.org,"725 Philip Islands Suite 612
-Wellsview, NY 91072"
-SU3367,"Stewart, Wilson and Barajas",797.587.9562x8949,normanwilson@example.net,"577 Tracy Cliff
-Port Jacob, ME 60583"
-SU8305,Sullivan and Sons,+1-499-332-2291x52877,jeremy15@example.net,"68865 Melissa Mountains Suite 776
-North Ericview, AK 01447"
-SU5345,Swanson-Skinner,+1-337-288-9670x40464,ephillips@example.net,"460 Mcneil Glen Suite 148
-South Alyssatown, PA 29091"
-SU0304,Valencia LLC,(639)305-7694,ivalenzuela@example.org,"55808 Andrew Viaduct
-Vanessaville, AR 04513"
-SU7342,"Meyer, Gonzalez and Cooper",+1-731-245-0542x2262,colonerica@example.com,"57204 Jennifer Roads Suite 673
-Tracyborough, SD 77970"
-SU7384,Fuller-Garcia,(469)812-0033,jonathanwilliams@example.org,"23000 Travis Point Suite 002
-Lake Terryhaven, PA 99822"
-SU2460,Johnson-Ford,532.665.8449x28592,cevans@example.org,"667 Brenda Expressway
-Howelltown, NJ 83331"
-SU3202,Sheppard-Chambers,574-958-2701x919,kristinrandolph@example.org,"28264 Victoria Bridge Apt. 125
-Dawnville, PR 64306"
-SU5587,"Parsons, Hanson and Sanchez",914.425.0715x2045,kathleen79@example.net,"43112 Hodge Park Apt. 941
-Christopherfort, MA 33913"
-SU8741,Smith Inc,001-368-659-2745x70108,georgescott@example.net,"30361 Hogan Lights Apt. 446
-Port Rosemouth, CA 11409"
-SU9043,Gonzales-Thompson,(484)439-8151,nicolewhite@example.com,"590 Jeffrey Prairie Suite 068
-South Teresastad, FL 34069"
-SU3112,"Gray, Blankenship and Weber",001-335-972-3220x93320,emccormick@example.org,"08202 Douglas Mall Apt. 671
-North Gloriaborough, OK 95684"
-SU9618,"Gonzalez, Gates and Carlson",897.824.9935x55521,fitzpatrickdebbie@example.org,"17115 Myers Stream
-Johnport, DC 95396"
-SU9093,Gilmore Group,001-712-851-8441x5099,michaelmyers@example.org,"957 Cameron Springs
-Maddenside, AR 32140"
-SU9639,"Acevedo, Finley and Acosta",934-356-6978x572,michael38@example.org,"6978 Lamb Isle Suite 870
-Lake Alexander, IA 55872"
-SU3208,Bishop Ltd,+1-831-868-4102x3045,andrea74@example.com,"00150 Wolfe Road Suite 483
-Smithfurt, AK 83581"
-SU1728,Beck-Ruiz,788.654.7394,shaneyoung@example.net,"14630 Chris Isle
-Burkeberg, FL 68761"
-SU9016,"Chapman, Rivera and Howard",217-866-6179,joann13@example.com,"8707 Lane Burgs
-Orrhaven, FL 54938"
-SU8071,Pittman PLC,001-932-245-0321x5083,tonygallegos@example.com,"674 Jerry Drives Apt. 883
-East Robert, AR 15259"
-SU6608,Tucker Group,001-386-641-3918x0866,zacharyfleming@example.net,"589 Heather Inlet
-Scottbury, SD 51847"
-SU4206,Abbott-Palmer,442.275.9917,cwilson@example.com,"Unit 2350 Box 3816
-DPO AE 09685"
-SU1392,French Ltd,736.512.5652x8954,ywashington@example.org,"531 Cheyenne Drives
-Sharonville, OR 74812"
-SU3544,Turner and Sons,+1-582-529-2506x0664,browntyler@example.org,"7053 Andrew Squares
-Port Amandaview, FM 70285"
-SU5040,Liu LLC,(709)222-7711,roblesdeanna@example.net,"90554 Sonya Rue Suite 883
-Garrettville, KY 61696"
-SU6213,Hayes and Sons,479.599.9490,nancyoconnor@example.net,"Unit 3384 Box 2745
-DPO AP 57614"
-SU1163,Valdez Inc,967-539-4594x9240,daviskristine@example.net,"220 Charles Fort
-Port Joshua, IL 63281"
-SU9458,Frost Ltd,+1-520-475-8048,cassie87@example.com,"3446 Jones Underpass
-Lemouth, CT 77316"
-SU5853,"Jones, Velasquez and Warren",+1-684-989-2178,sanchezdiane@example.com,"06450 Emma Alley
-Ryanview, NJ 94952"
-SU8772,Cannon-Cervantes,943-746-1709x23690,mullenjessica@example.com,"00940 Stevens Streets Suite 557
-South Kristinview, AS 66242"
-SU7961,"Morris, Huff and Greer",340.269.9258,sleon@example.org,"4817 Caroline Hills Apt. 939
-East Jessica, VA 27744"
-SU8060,Palmer-Sanchez,335-853-8469,marvinkoch@example.com,"38250 Taylor Light Apt. 923
-Jamiemouth, GA 77480"
-SU1240,"Howard, Marshall and Williams",001-943-661-9483,cochoa@example.net,"5208 Kelley Union
-East Pattymouth, AL 84061"
-SU9280,Higgins Ltd,+1-782-203-8599x9719,kristina21@example.com,"636 Martin Spurs
-East Sandra, ID 98403"
-SU6516,Murray LLC,001-775-776-0371x44924,fnicholson@example.com,"09757 Brewer Curve Apt. 561
-Stewartmouth, HI 18180"
-SU3564,"Bell, Campbell and Rodriguez",001-302-435-5871x35931,smithadam@example.org,"4991 Ashley Well
-Riveraland, NV 89411"
-SU8843,Christian-Rogers,737.202.5534,churchsean@example.org,"70631 Michelle Gateway Suite 877
-North Jenniferbury, NC 15070"
-SU7266,Campbell-Cruz,001-958-932-9861,randalljohn@example.com,"475 Wesley Lock
-Brianside, PA 53646"
-SU7836,"White, Gilbert and Myers",729-891-2366x0358,vmiller@example.org,"260 Matthew Spring
-Teresamouth, PR 33879"
-SU0089,"Moss, Crawford and Scott",457-990-1312x844,bradysarah@example.com,"60820 Jocelyn Dale Apt. 962
-Julieshire, WA 82403"
-SU5940,"Miller, Green and Mcfarland",3548245121,michaelbaker@example.com,"75600 Julie Forest Apt. 691
-Lake Kyle, PW 39533"
-SU4556,"Owens, Salazar and Mcdonald",+1-459-367-4100x308,bethanygreen@example.net,"3336 Steven Ridge Suite 556
-South Alice, MS 91758"
-SU7322,Parker-Hernandez,(825)875-6904x0229,lisagrimes@example.net,"0612 Reyes Trail
-Lake Jeffhaven, NC 08697"
-SU3140,"Davis, York and Weber",715.875.8029x81625,scottvanessa@example.net,"731 Gallagher Hollow Suite 847
-Megantown, UT 49096"
-SU1807,Bryan-Young,215-657-1883x127,johnmontes@example.com,"956 Bradley Skyway
-New Emma, IN 08239"
-SU4591,Hoffman-Murray,911-347-7108,albert94@example.com,"PSC 3091, Box 4244
-APO AA 83917"
-SU6383,"Walter, Garcia and Santos",544-729-3965,bonillajessica@example.net,"25446 Tyler Crescent
-Michelleborough, OK 11764"
-SU6853,Garcia PLC,586.984.4567x3400,umorris@example.net,"42984 Garcia Loaf
-Garrisonhaven, NJ 37018"
-SU3725,"Ward, Anderson and Simpson",949.749.2368x800,burnettanna@example.net,"903 Adam Station Suite 472
-South Gregory, VI 18139"
-SU3327,Villanueva Inc,213.229.3943,dakota95@example.org,"Unit 8889 Box 4479
-DPO AP 62374"
-SU3155,"Berry, Jones and Butler",001-594-289-0640x4121,tim70@example.com,"Unit 7482 Box 1579
-DPO AA 32082"
-SU0998,Ballard-Hernandez,437.845.5987x764,kayala@example.com,"20989 Johnny Alley Suite 847
-Costaton, IL 01559"
-SU8777,Elliott-Gardner,001-928-259-2236,andrew95@example.com,"0764 Joshua Hill Suite 701
-West Danielchester, TX 92268"
-SU9927,Kane Ltd,001-215-499-0930x10986,plane@example.com,"69777 Ashley Circle
-Larryhaven, SD 54082"
-SU1687,Baker-Singleton,651.654.1439x3992,zwilliams@example.net,"89061 Mary Valley Apt. 869
-New Tina, NE 10615"
-SU2349,Mckee Inc,+1-858-375-8757x6193,davidnguyen@example.org,"402 Cannon Court
-New Allison, FM 66057"
-SU5914,"Hale, Brown and Long",650-531-3450x1203,patelronald@example.org,"491 Peterson Common Suite 401
-Ryanshire, PA 35349"
-SU0084,Keller-Williamson,420.940.9020,jonathanjones@example.com,"USNS Hernandez
-FPO AE 11376"
-SU0691,Walker-Rodriguez,+1-883-966-3522,susan89@example.com,"99886 David Islands Apt. 222
-Jordanfurt, HI 40998"
-SU1220,"Wood, Martinez and Lee",380.376.1489x459,beth28@example.org,"6145 Brown Mews
-Gabrielafurt, UT 25595"
-SU3006,Daniels Ltd,566-697-7433x688,deborahmarsh@example.org,"Unit 6740 Box 4646
-DPO AP 87836"
-SU4142,Washington Inc,8964515341,travis69@example.net,"977 Lauren Drive
-Cannonchester, VT 64870"
-SU3209,Snyder LLC,001-538-553-8744x287,danielle29@example.com,"0781 Rachael Mount
-South Jeffrey, KS 55425"
-SU5492,Brown Group,385.409.3311x174,troy58@example.com,"846 Ana Wall Suite 293
-New Ericchester, AK 71321"
-SU6152,Long and Sons,953-938-6085,ryanmills@example.net,"USNV Smith
-FPO AP 05711"
-SU6923,"Mcclain, Garcia and Norman",999-632-4281,qevans@example.com,"8598 Miller Turnpike
-Port Amanda, VI 40205"
-SU1691,"Matthews, Hoffman and Martinez",300.738.5810x202,fowlerjohn@example.com,"97059 Carpenter Islands
-Ambershire, WA 05170"
+supplier_id,supplier_name,supplier_phone,supplier_email,supplier_zip_code,supplier_country,supplier_state,supplier_city,supplier_street
+SU0454,Keller Ltd,+12673196583655,briannatorres@example.org,51142,Montenegro,New Mexico,Lake Amandachester,77637 Wolf Valleys
+SU1107,Green-Duke,+1784855791850266,beasleydanielle@example.org,61509,Mexico,Illinois,West Troyburgh,19501 Pamela Grove
+SU7342,Carey-Wilson,+873975614533138,frederickdanielle@example.org,76466,Cameroon,California,Nicoleborough,7521 Kirk Summit Suite 712
+SU3999,Wilson and Sons,+0727500704168252,qlowe@example.org,93041,North Macedonia,Maryland,Fergusonstad,486 Zachary Gateway Apt. 277
+SU8618,"Greer, Willis and Goodwin",+915583996743,melissa83@example.org,31787,Wallis and Futuna,Ohio,Bridgetville,950 Samantha Groves
+SU5227,"Wheeler, David and Hunt",+4901139703269156,andersonheather@example.net,14634,United States of America,New Mexico,Russellmouth,0753 Ashley Forest Suite 542
+SU1095,"Rodriguez, Craig and Kirk",+584559569748,stokessarah@example.com,96994,Tonga,New Hampshire,Port Tiffanyfurt,2474 Matthew Tunnel
+SU0722,Carey Group,+62556222954367,dgardner@example.com,20836,Romania,Nevada,Virginialand,84932 Joshua Alley Suite 591
+SU5858,Ray PLC,+545830502702012337,john61@example.net,46284,Central African Republic,New Mexico,Jeffersonborough,745 Nicholson Views Apt. 121
+SU1875,Ayers and Sons,+009822169393720175,andrewfranklin@example.org,39617,Djibouti,Texas,New Sarahburgh,58644 Dawn Springs
+SU8970,Cameron-Wilson,+6655900084987407985,alex58@example.org,23311,Congo,Tennessee,Rittershire,1922 Michael Track Apt. 180
+SU6732,Gonzalez Inc,+85206027077826,mwalker@example.net,02865,Slovakia (Slovak Republic),Utah,Adammouth,25870 James Fork Suite 229
+SU6383,Ingram-Mooney,+7855594858584639299,bcarpenter@example.org,36396,Saint Vincent and the Grenadines,Rhode Island,Port Timothyport,5052 Jillian Spur Suite 927
+SU0998,Torres LLC,+97414591492,halljohn@example.org,09482,Niger,New Jersey,Timothybury,8792 Emily Flat
+SU7234,Hayes Ltd,+85260096189,wwalker@example.org,76312,Cayman Islands,Virginia,West Annashire,7329 Smith Road Suite 167
+SU9265,Russell and Sons,+71500795719793,rwalls@example.net,79351,Botswana,Idaho,Rothstad,346 James Corners
+SU6936,Stewart-Joseph,+96634215844943,johncastro@example.com,88029,Kuwait,Georgia,Andrewmouth,612 Wells Groves Suite 177
+SU3169,"Henry, Porter and Montgomery",+096171376113,hannah62@example.net,77359,Falkland Islands (Malvinas),Tennessee,Javierberg,1693 Gibson Via Suite 171
+SU8245,Lloyd Inc,+7797365671674327,stephen69@example.org,88617,Netherlands Antilles,Rhode Island,Lake Ian,152 Valdez Divide
+SU6448,"Navarro, Howard and Spencer",+89847915619400014,charlene96@example.org,90224,Hong Kong,Ohio,Riveraland,5776 Alex Trace
+SU2516,Smith-Peterson,+037175115721130520,mariahunter@example.net,52565,Vietnam,New York,Lake Josephton,4810 Phillips Mountains Suite 794
+SU2810,Brown-Cobb,+11395679631413934,xking@example.org,40616,Madagascar,Colorado,Morenotown,34239 Katie Vista
+SU0603,Lozano-Barnes,+2645695937274655,shelley88@example.net,40166,Bangladesh,New Mexico,East Jessica,55808 Andrew Viaduct
+SU0865,"Heath, Carter and Mercer",+68231602832759,johnsonlauren@example.net,82316,Cook Islands,Delaware,Josephbury,5054 Heidi Drive
+SU2342,"Odom, Ballard and Sampson",+57914919389309233,faulkneralejandra@example.org,89305,Montserrat,Nevada,South Michaelton,2040 Foster Ford Suite 739
+SU7084,Fuller-Garcia,+8875248055350644537,denisecain@example.net,74441,Bermuda,Florida,North Jeffreybury,2401 Joseph Points
+SU0886,Ayala-Mejia,+411678852393,johnjohnson@example.net,06605,South Africa,Ohio,South Matthewside,02179 Johnson Mountain Apt. 265
+SU6767,"King, Park and David",+0396750271428856362,debbiemorse@example.com,76985,Saint Barthelemy,Florida,West Debbie,4718 Ashley Locks Suite 839
+SU9267,"Martin, Bryant and Torres",+05810749019,xwelch@example.net,88677,Nepal,Louisiana,Princemouth,0191 Heather Dale
+SU0167,Randolph-Cervantes,+4928505840250634,flowersnathaniel@example.org,90807,Malta,Wyoming,Lake Ryan,0212 Howard Port
+SU1835,Garrison Ltd,+9896809506170,tylerdavis@example.com,21069,Yemen,Virginia,Jilltown,52045 Floyd Underpass Apt. 858
+SU2975,Hart-Thompson,+47429454294,jamie31@example.org,18626,Malaysia,Kentucky,Davisport,417 Morgan Fords
+SU2784,Mckenzie Inc,+7104856328023,xnewton@example.net,92659,United Kingdom,Hawaii,Bakerfort,108 Katelyn Common
+SU4808,"Howe, Costa and Chambers",+332953391840,alexis03@example.com,12228,Liberia,Indiana,Mortonview,601 Jones Light Suite 222
+SU0967,"Ramirez, Garza and Davis",+94024237673,samantha12@example.org,19715,Turkmenistan,West Virginia,West Ryan,590 Jeffrey Prairie Suite 068
+SU5043,Myers LLC,+6104880623392182694,jonathangray@example.com,82342,Colombia,Wisconsin,West Scott,220 Susan Forest
+SU3130,Johnson Ltd,+52291947368017,brewerdeanna@example.com,78130,Lesotho,Alaska,Port Susanview,82022 Robert Trail
+SU1139,Russo Group,+70703160841,dmartinez@example.net,82476,Comoros,Oregon,South Melissa,972 Oneal Stream
+SU2177,"Harris, Cochran and Graves",+989632353684,matthew16@example.com,07391,Venezuela,Wyoming,South Alan,17115 Myers Stream
+SU5700,Sanchez-Parker,+2110728163973,jennifergilmore@example.com,98603,Bermuda,Georgia,Jessicaville,1509 Sullivan Drive Suite 061
+SU7497,Hammond Ltd,+0155722260,booneashley@example.com,02816,Bahrain,South Dakota,Maddenside,99314 John Roads
+SU5159,"Todd, Long and Juarez",+5590188888364426,srice@example.com,22491,Libyan Arab Jamahiriya,Pennsylvania,New Michaelbury,545 Vargas Orchard
+SU3806,"Flores, Smith and Houston",+44587000901685,tsmith@example.org,90944,Dominican Republic,Nevada,New April,68410 Jamie Grove
+SU0551,Hood-Graves,+043739470777312,jperry@example.org,62254,Uganda,Louisiana,Gutierrezfurt,01507 Courtney Glens
+SU4687,Stephens-Ramos,+51864619486227,susan05@example.net,86006,Latvia,Indiana,Joshuaborough,8998 Sanchez Flats Apt. 973
+SU4560,Miller LLC,+6769575628330005,ppitts@example.net,01704,Albania,California,Victoriafort,89551 Tyler Lights
+SU2943,"Walsh, Santos and Jones",+468840932922978,barronrobert@example.net,23710,Qatar,California,South Benjamin,8707 Lane Burgs
+SU8018,Orr-Hicks,+641038895718966488,hmiller@example.net,96822,Poland,Indiana,West Elizabeth,21508 Stefanie Rest
+SU9067,"Leon, Harrington and Anderson",+08504162165127470,maria74@example.com,37531,Saint Martin,Nevada,Adamsshire,42918 John Mall
+SU3350,Rodriguez and Sons,+8210351463,vmorales@example.net,56336,Estonia,Delaware,New Debra,086 Jones Expressway
+SU2313,"Donovan, Hansen and Gomez",+3732822916083140,savannahreed@example.net,80290,Namibia,Hawaii,Julianbury,8342 Brooks Ports Apt. 720
+SU1629,"Russell, Rowland and Williams",+4848402885393,mooreleonard@example.org,71229,Uruguay,Tennessee,South Jesusland,73612 James Island
+SU2056,"Garrison, Moreno and Zimmerman",+09546011461,micheal77@example.com,10525,Azerbaijan,Vermont,Lake Mary,09329 Mayer Shoals
+SU8696,Chapman and Sons,+0714407077,adam38@example.org,24183,Peru,Pennsylvania,West Sheila,066 Hickman Forks Apt. 117
+SU6104,Taylor-Lewis,+855355426520,hamiltonanthony@example.com,32443,Bahrain,Alaska,Port Amandaview,520 Dean Motorway
+SU0426,Martinez-Jones,+160628607130160334,dawn04@example.net,04296,Nicaragua,Ohio,Johnshire,5438 Robertson Ways
+SU4297,Hopkins and Sons,+386666799970262047,danielowens@example.org,59699,Kyrgyz Republic,Wisconsin,Port Jerry,999 Mack Circle Apt. 320
+SU7565,"Caldwell, Joyce and Jennings",+0313155337,melissafry@example.net,41364,Cambodia,Wisconsin,Carterside,04673 Choi Prairie Suite 924
+SU2748,"Smith, Lamb and Alexander",+6917232033696,daviskristine@example.net,13514,Maldives,Oklahoma,Lake Gene,15334 Lewis Way
+SU5661,Frost Ltd,+6847058724752290747,adamfreeman@example.net,08363,French Polynesia,Ohio,East Mike,2243 Cervantes Locks Suite 187
+SU8240,"Jacobs, Rodriguez and Garza",+3813425642,lisawarren@example.net,73758,Reunion,Maryland,Port Clifford,971 Anne Alley Suite 382
+SU5375,Harrington Ltd,+056474712422,rturner@example.org,11790,Peru,Alabama,Ryanview,581 Green Highway Suite 170
+SU7321,"Berry, Lewis and Reid",+6651339354,ruizbarbara@example.org,52664,Saint Kitts and Nevis,Nevada,Andrewsmouth,09407 Francis Inlet
+SU1951,Kelly-Rose,+617271964097,wileykristin@example.com,66242,Netherlands,Massachusetts,Port Mary,40699 Mark Plain Apt. 807
+SU0479,Hammond-Campbell,+98374127397525,michael48@example.org,64798,Romania,North Dakota,New Amanda,392 Jessica Stream
+SU3735,Perry PLC,+1741451240463995,cherylclark@example.com,43360,Croatia,North Carolina,Richardville,57340 William Estates Suite 072
+SU7571,"James, Obrien and Levine",+2116936210629,brookemoore@example.com,27406,Korea,Virginia,Gavinshire,7709 Velazquez Wall Apt. 619
+SU8387,Arnold-Burns,+7161649744737508,cochoa@example.net,37878,Austria,Colorado,Jessicastad,85861 Patty Island
+SU0751,Walsh Ltd,+0982349985,jenniferchen@example.org,66259,Seychelles,Mississippi,Garciamouth,2143 Clark Square
+SU6455,Chambers-Humphrey,+60874397180775039,evan22@example.org,98403,Antigua and Barbuda,New Jersey,Kendrastad,0371 Carter Ranch Apt. 459
+SU0903,Ross-Hughes,+784394369713285,christina72@example.org,80195,Kenya,Minnesota,Christianberg,6175 White Plaza
+SU7703,Neal-Ryan,+95432468270598770960,ingrambrandon@example.org,44737,Guyana,Oklahoma,Rushborough,318 Barbara Village Apt. 002
+SU0492,Nguyen Ltd,+13600135180794,randyjohnston@example.org,06996,Montserrat,Montana,Riveraland,535 Jeffrey Trafficway Suite 025
+SU2351,Lee-Strong,+359980027328291509,donna00@example.org,58869,Togo,California,Danielmouth,3191 Lisa Loop
+SU2027,"Mason, Mccall and Jimenez",+40380751160784113,rodriguezamber@example.org,69901,Bouvet Island (Bouvetoya),Missouri,Andrewchester,329 Miller Stravenue Suite 033
+SU1928,Eaton-Brown,+8333411383876,steven51@example.net,06031,India,Michigan,New Maryside,298 Rios Extensions Apt. 236
+SU8705,Shaffer-Marquez,+027806371177982265,michaelfernandez@example.com,54003,Mauritania,Pennsylvania,Millerburgh,092 Newman Tunnel Apt. 569
+SU3072,"Petersen, Compton and Pham",+8177179801545767325,tsingleton@example.net,65589,American Samoa,Kentucky,West Michaeltown,12844 Sarah Via
+SU8112,Brady Group,+397364143447,vgraham@example.com,17841,India,Arizona,North Joanne,29624 Chloe Prairie
+SU5657,"Weber, Miller and Green",+485462276248,benjaminflores@example.net,24762,Turkey,Kentucky,Robinburgh,96925 Russell Mountain
