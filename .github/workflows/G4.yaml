@@ -32,7 +32,7 @@ jobs:
       - name: Execute data analysis
         run: |
           Rscript R/load_data.R
-          continue-on-error: true
+        continue-on-error: true
       - name: Add files
         run: |
           git config --global user.email "u2292213@live.warwick.ac.uk"
