@@ -356,7 +356,7 @@ if (any(nchar(supplier_data$supplier_street) > 255)) {
 if (any(!grepl("^\\S+@\\S+\\.\\S+$", supplier_data$supplier_email))) {
   stop("Invalid supplier_email format detected.")
 }
-## Basic phone number check
+# Basic phone number check
 #if (any(!grepl("^\\+?\\d{10,20}$", supplier_data$supplier_phone))){
 #  stop("Invalid supplier_phone format detected.")
 #}
@@ -418,4 +418,3 @@ if (any(invalid_ended_ads)) {
 
 # Disconnect
 dbDisconnect(my_connection)
-
