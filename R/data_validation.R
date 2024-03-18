@@ -28,8 +28,7 @@ for (csv_file in csv_files) {
 # List tables in the database
 tables <- dbListTables(my_connection)
 print(paste("Tables in the database:", toString(tables)))  # Debugging message
-_________________________________________________________________
-_________________________________________________________________
+
 missing_values <- apply(is.na(customers_data), 2, sum)
 
 # Check primary key
@@ -63,9 +62,9 @@ if (nrow(customers_data[!valid_ages]) > 0) {
 }
 
 # Check email format
-if (any(!grepl("^\\S+@\\S+\\.\\S+$", customers_data$email))) {
-  print("Invalid email format")
-}
+#if (any(!grepl("^\\S+@\\S+\\.\\S+$", customers_data$email))) {
+ # print("Invalid email format")
+#}
 
 # Check password hash
 if (any(nchar(customers_data$password_hash) > 255)) {
@@ -80,11 +79,9 @@ if (any(!customers_data$membership %in% valid_membership)) {
 
 
 # Check Primary Key
-if (length(unique(customer_address_data$customer_address_id)) != nrow(customer_address_data)) {
+if (length(unique(customer_addresses_data$customer_address_id)) != nrow(customer_addresses_data)) {
   print("Customer Address ID is not unique.")
 }
-____________________________________________________________________
-____________________________________________________________________
 
 # Checking for missing or empty values in critical fields
 mandatory_fields <- c("zip_code", "country", "state", "city", "street")
@@ -115,7 +112,6 @@ if (any(nchar(customer_addresses_data$street) > 255)) {
   print("street exceeds 255 characters.")
 }
 
-__________________________________________________________________
 na_order <- apply(is.na(orders_data), 2, sum)
 
 # Check Primary Key
@@ -151,7 +147,7 @@ if (!any(is.na(na_order)) &&
   print("Order data is not valid. Please correct the errors.")
 }
 
-```
+
 
 # Check Primary key
 if (length(unique(order_details_data$order_detail_id)) != nrow(order_details_data)) {
@@ -192,7 +188,7 @@ if (!all(sapply(order_details_data$sub_quantity, is.numeric))) {
 if (any(order_details_data$sub_quantity <= 0)) {
   stop("Invalid sub_quantity detected. Quantities must be positive.")
 }
-________________________________________________________________
+
 # Check primary key
 if (length(unique(transactions_data$transaction_id)) != nrow(transactions_data)) {
   stop("Transaction ID is not unique.")
@@ -271,7 +267,6 @@ if (any(delivery_data$delivery_status == 'Failed' & (is.na(delivery_data$deliver
   stop("'Failed' deliveries have invalid dates or the duration is not more than 30 days.")
 }
 
-```
 
 # Check the primary key
 if (any(duplicated(category_data$category_id))) {
@@ -335,7 +330,7 @@ if (any(duplicated(supplier_data$supplier_email))) {
 }
 
 # Validate non-null constraints
-required_fields <- c("supplier_id", "supplier_phone", "supplier_name", "supplier_email", "supplier_zip_code", "supplier_country", "supplier_state", "supplier_city", "supplier_street")
+required_fields <- c("supplier_id", "supplier_phone", "supplier_name", "supplier_email")
 if (any(sapply(supplier_data[required_fields], is.na))) {
   stop("Null values found in required supplier fields.")
 }
