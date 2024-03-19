@@ -20,12 +20,11 @@ library(scales)
 ## Create and Connect Database
 ```{r}
 # Define the tables to drop
-tables_to_drop <- c("ads", "category", "customer_address", "customer", 
-                     "delivery", "orders", "orders_details", "product", 
+tables_to_drop <- c("ads", "category", "customer_address", "customer","delivery", "orders", "orders_details", "product", 
                      "supplier", "supply", "`transaction`")
 
 # Connect to the database
-my_connection <- RSQLite::dbConnect(RSQLite::SQLite(), "e_commerce.db")
+my_connection <- RSQLite::dbConnect(RSQLite::SQLite(), "database/an_e_commerce.db")
 
 # Drop each table
 for (table_name in tables_to_drop) {
@@ -109,7 +108,7 @@ summary(product)
 
 # Supplier
 str(supplier)
-supplier$supplier_phone = as.character(supplier$supplier_phone)
+#supplier$supplier_phone = as.character(supplier$supplier_phone)
 supplier$supplier_country = as.factor(supplier$supplier_country)
 supplier$supplier_state = as.factor(supplier$supplier_state)
 supplier$supplier_city = as.factor(supplier$supplier_city)
@@ -130,6 +129,7 @@ str(transaction)
 summary(transaction)
 ```
 
+
 ## Write them to the database 
 ```{r}
 RSQLite::dbWriteTable(my_connection,"ads",ads,append = TRUE,overwrite=FALSE)
@@ -144,6 +144,7 @@ RSQLite::dbWriteTable(my_connection,"supplier",supplier,append = TRUE,overwrite=
 RSQLite::dbWriteTable(my_connection,"supply",supply,append = TRUE,overwrite=FALSE)
 RSQLite::dbWriteTable(my_connection,"transaction",transaction,append = TRUE,overwrite=FALSE)
 ```
+
 
 ## Database check
 ```{r}
