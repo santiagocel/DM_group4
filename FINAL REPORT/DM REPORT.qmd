@@ -1,0 +1,908 @@
+---
+title: "DM_REPORT"
+format: pdf
+editor: visual
+---
+
+## 1. Introduction
+
+E-Commerce websites have become a popular strategy for many businesses to seamlessly market and sell their products to customers. It is crucial that these websites operate smoothly to captivate more customers and attain competitive advantage and the platforms are heavily reliant on proper data management. This report discusses in detail the data management aspects of “We-Buy” a simulated E-Commerce environment from database design to analysis and reporting.
+
+## 2. Database Design and Implementation
+
+The Mini world of E-Commerce is a digitized platform where customers with an online profile can view and buy products online. The products will be sold by designated sellers and dispatched and distributed to the customers when they make a purchase and complete payment.  
+
+### **2.1. Requirement Collection and Analysis**  
+
+#### **2.1.1.** Assumptions for ER Diagram 
+
+Customer: 
+
+-   One customer must have at least one address and multiple orders can be delivered to one address.  
+
+-   The email of customers must be unique. 
+
+Orders: 
+
+-   One order can have multiple products.  
+
+-   The ‘sub_quantity’ in the order details shows the number of each product separately.  
+
+-   If an order is delivered, then it has only 1 transaction. 
+
+Transaction: 
+
+-   One transaction match with one delivery.  
+
+-   Meanwhile, if the order status is ‘Pending’,’ Processing’ or ‘Cancelled’, there is no transaction matched with it. If the order status is ‘Succeed’, it matches with one transaction record.  
+
+-   Every transaction can have multiple products. 
+
+Delivery: 
+
+-   One delivery matches one customer address at one time. 
+
+-   One delivery can only be linked with one transaction at a time. Also, If the transaction status is ‘Pending’,’ Processing’ or ‘Cancelled’, there is no delivery. If the transaction status is ‘Succeed’, it matches with one delivery record.  
+
+Product: 
+
+-   One product belongs to one category. 
+
+-   One product can be supplied by multiple suppliers. 
+
+-   One product can have 0 or 1 or many advertisements. 
+
+-   One product can be in multiple transactions and multiple orders. 
+
+-   The rate value is between 0 to 5. 
+
+Category: 
+
+-   One category can have many products. 
+
+-   One parent category can have multiple sub-categories. 
+
+Supply: 
+
+-   This is a relationship between suppliers and products. 
+
+-   Stock cannot be empty. 
+
+Supplier: 
+
+-   One supplier can supply multiple products. 
+
+-   The email of each supplier should be unique. 
+
+Ads: 
+
+-   One ad can only match one product. 
+
+-   If the ad is ‘active’ which means that the last day to show the ad is after today. If the ad is ‘ended’, it means that the last day was before today. All advertisements have a start date.  
+
+#### **2.1.2. Logic Design**
+
+-   customer (customer_id(PK), first_name, last_name, email, password_hash, gender, membership, date_of_birth, customer_address (zip_code, country, state, city, street)) 
+
+-   order(order_id (PK), customer_id (FK), product_id(FK), order_date, order_status, order_details(sub_quantity)) 
+
+-   transactions (transaction_id(PK), order_id(FK), customer_id(FK), transaction_time, transaction_status, payment_method) 
+
+-   delivery (delivery_id(PK), transaction_id(FK), customer_address_id(FK), delivery_start_sate, delivery_end_date, delivery_status) 
+
+-   product (product_id (PK), category_id(FK), product_price, product_name, discount_percentage, rate_value) 
+
+-   supply (supply_id(PK), supplier_id(FK), product_id(FK), stock) 
+
+-   supplier (supplier_id(PK), supplier_email, supplier_name, supplier_street, supplier_city, supplier_state, supplier_country, supplier_zip_code) 
+
+-   ads (ad_id(PK), product_id(FK), ad_start_date, ad_end_date, ad_status)) 
+
+-   category (category_id(PK), parent_category_id(FK), category_type)
+
+  
+
+#### **2.2. Data Relationships**
+
+**One to One relationship** 
+
+-   Entity: Customer and Transaction 
+
+-   Relationship: A Customer can have only one transaction at a time, and one transaction will be entered in to by one customer.
+
+    ![Customer - Transaction relationship](image1.png)
+
+-   Entity: Transaction and Delivery 
+
+-   Relationship: A transaction will have one delivery, and each delivery will begin with one transaction
+
+    ![Transaction - Delivery relationship](image2.png)
+
+    **One to Many relationship** 
+
+-   Entity: Transaction and Product  
+
+-   Relationship: Each transaction can have many products, but each product will only belong to one transaction 
+
+    ![Transaction - Product relationship](image3.png)
+
+-   Entity: Product and Ads 
+
+-   Relationship: Each product can have many Ads, but each Ad will only belong to one product
+
+    ![Product - Ad relationship](image4.png)
+
+-   Entity: Category and Product  
+
+-   Relationship: Each category will have many products, but each product will only belong to one category 
+
+    ![Category - Product relationship](image5.png)
+
+-   Entity: Category and Category  
+
+-   Relationship: Each parent category will have many subcategories, but each subcategory will only belong to one parent category
+
+    ![Category - Category relationship](image6.png)
+
+    **Many to Many relationship**
+
+-   Entity: Customer and Product  
+
+-   Relationship: A customer can have multiple products, and each product can be bought by multiple customers 
+
+    ![Customer - Product relationship](images7.png)
+
+-   Entity: Product and Supplier  
+
+-   Relationship: A product can have many suppliers, and each supplier can have many products.
+
+    ![Supplier - Product relationship](Screenshot%202024-03-17%20143912.png)
+
+#### 2.3. ER Diagram Design
+
+![ER Diagram](ER%20DIAGRAM%20FINAL.png)
+
+#### 2.4. SQL Database Design
+
+The Figure 10 depicts theentity relationship diagramfor the database that includes various tables: Customer, Orders, Transactions, Delivery, Product, Ads, Supply, Supplier, and Category. These tables store information based on the relationship indicating how the customer details, orders, products, suppliers, and advertisements are linked to managing inventory, order processing, and customer interactions. This is done to ensure seamless flow from customer order to delivery. 
+
+![SQL design](sql%20design.png){width="500"}
+
+## **3. Data generation and Management**
+
+### **3.1. Synthetic Data generation**
+
+Data generation methods were tested through Mockaroo, ChatGPT and Python. Mockaroo was rejected as the platform allows very less customization and the generated data were inconsistent and irrelevant. ChatGPT was rejected as the system did not respond and could not handle the specifications mentioned with the amount of data required. Python proved to be a suitable platform to generate consistent and accurate data and could handle the specifications and validations given. Faker, pandas, datetime, OS and random libraries were imported to the environment for data generation.  
+
+Several assumptions were made when generating the data.
+
+Customer:  
+
+Customer is an important part of the data. With the help of customer data, we will be able to do necessary analysis, but there are certain conditions that should be met while creating the data for the customer. 
+
+A customer must have at least one address and multiple orders can be delivered to one.  
+
+One feature that is inspired by real world e-commerce companies is membership. Based on the membership, customers get a variety of rewards. In the case of We-Buy, the company offers discounted prices.   
+
+Order:
+
+As an e-commerce company, it is important to understand how people are utilizing the service and what all products are being bought. This helps the company to understand what all the products that generate maximum revenue for the company.  
+
+This data should contain specific information about the order submitted by the customer. Information such as order status and order date should be considered. Order status has different values such as ‘Pending', 'Processing’, ‘Cancelled’, ‘Submitted’, and ‘Succeed’. We must connect order data with customer information. So, customer id is also mentioned in this table so that while doing analysis, it is easy to retrieve information from customer table.  
+
+Supplier:
+
+Suppliers play a vital role. The orders placed by customers are gone to suppliers. With this, suppliers can send the product to the respective customers. Hence suppliers are handling all the goods, it is important to store supplier information. So, geographical information such as address, and other contact information are collected and saved.  
+
+One assumption that is required for supplier is that one supplier can supply products to multiple customers.  
+
+To make sure that the customer gets the item, each supplier is required to note down the items available in stock. For this, product id is used to access the product table to get necessary information.  
+
+Product:
+
+It is very important to capture information regarding the products. At the same time, there are several assumptions that are made to make sure that the data collected will help the company to deduce required information.  
+
+One product should be matched with one category, but at the same time, one category can have many products under it. So, it is important to make sure that the products are mapped accordingly.  
+
+It is also to be noted that ads can help with selling more products, but it is not mandatory that every product has ads. So, it is assumed that each product can have wide variety of ads or one or no ads. This information can help us understand whether ads will help to sell more products or not.  
+
+Delivery:
+
+Since the products will be delivered to customers, it is sensible to capture the information regarding the delivery. This should include information such as delivery status, transaction id, and customer id.  
+
+There are few important assumptions that should be made while considering this information.  
+
+One major assumption is that if the difference between the delivery start date and delivery end date is 30 days, then the delivery is considered as failed. Both the delivery start date and delivery end date are spread across the last quarter of 2023 and first quarter of 2024.  
+
+Some of the other key points to note is regarding how the dates are allocated based on the delivery status. 
+
+|                |                 |               |
+|----------------|-----------------|---------------|
+| **Status**     | **Start Date**  | **End Date**  |
+| Not Delivered  | Empty           | Empty         |
+| In Delivery    | Not Empty       | Empty         |
+| Complete       | Not Empty       | Not Empty     |
+| Failed         | Not Empty       | Not Empty     |
+
+### **3.2. Data import and Quality assurance**
+
+It is crucial to check the quality of the data after it is imported. Especially, in this case, the data generated is synthetic data. Hence, it is even more reason to make sure if the data is correct or not. We must make sure of some of the basic information when it comes to data quality. For example, if there are two tables and both are connected by a foreign key, we must make sure that the data for foreign keys are taken correctly from the corresponding table.  \
+Also, every data will have missing values and other factors that can affect the quality. Hence, it is required to check and rectify the data if there are any discrepancies.  
+
+In R, we use str() and summary() to identify if the structure and datatypes of the data provided are not having any issues.  
+
+#### 3.3. Data Validation Rules
+
+For data validation, it is necessary to follow a structure. As every table holds key information, we must make sure that the data is correctly present. Below are the steps that should be followed while doing data validation. 
+
+-   We need to check the primary keys are unique for every table and make sure that the foreign keys are mapped correctly.  
+
+-   Next, we must check if there are NA values for the attributes mentioned in the schema.  
+
+-   There are several data types involved in the tables. So, verifying that the data generated matches the data type mentioned in the schema is a crucial step.  
+
+-   In the schema, for certain attributes, there are character limits mentioned. So, it is important to carry out checks to make sure that the character limits are not violated. 
+
+-   Now, there can be information in specific format, for example, email. Email is used for both customers and suppliers. So, we must check that the emails are in the correct format.  
+
+-   One of the important data when it comes to e-commerce business is date. Several entities have dates associated with it. So, it becomes a mandatory step to check all the date formats and make changes if there are any.  
+
+-   In some cases, we need to check for conditions, and populate data based on those conditions, for example, yes or no. So, based on the schema, we must check and populate corresponding data with minimal to no issues.  
+
+-   Email Validation: The email provided should have a valid email format (example\@gmail.com) 
+
+-   Entry Validation: Quantities entered must be a whole number  
+
+-   Date Validation: Start date must always be before the end date 
+
+-   Key Validation: All tables should have a Primary Key, and foreign key as required. Data types and data length should be as specified in the database 
+
+Business rules: 
+
+-   Transactions with delivery start date and delivery end date more than 30 days will be failed 
+
+-   Only successful orders can match with transactions 
+
+-   Only successful transactions can match with delivery  .
+
+#### **3.4 Data Storage and Retrieval**
+
+-   Database structure: A relational database structure with tables, columns, primary and foreign key relationships.  
+
+-   Data access methods: CRUD operations to enable efficient data retrieval and manipulation 
+
+-   Indexing and Query performance: Frequently queried fields optimized to run efficiently
+
+## **4. Data pipeline generation**
+
+### **4.1 GitHub repository and workflow setup**
+
+A repository was created through GitHub to centrally locate all information required for the data management of We-Buy. The repository was connected with R and push and pull functions synchronizing data flows to and from the repository were tested manually. All other information related such as the csv files containing the tables of the e-commerce data set, database file, quarto file, E-R diagram was uploaded to the repository for ease of use where all the members have access to the repository. Here,the required information that was necessary for the analysis was consolidated.
+
+**4.2 GitHub actions for continuous integration\
+**We use GitHub Actions as a fundamental tool to automate processes in our analysis. By creating a general workflow in our repository, we automate the process of validating and analyzing the information with which our analysis is built. Likewise, we program the workflow so that the processes are repeated every hour, which allows us to constantly monitor the quality of the information being handled. However, the generated code is automatically activated by any push or pull. Through GitHub actions we guarantee to have control over the changes that are made to the information and processes that are carried out. Attached to this report are the access details of our repository and the code used to run the workflow.
+
+## 5.Data analysis and Reporting
+
+Initially, the database is created and connected. All tables are dropped to ensure there is no overlapping to maintain data integrity and organization. After the tables are dropped, new tables can be loaded and created, and the quality of the data is checked. The checked data is later written into the database and the database is checked.
+
+---
+title: "DM Analysis"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(RSQLite)
+library(DBI)
+library(lubridate)
+
+# Load the scales package for formatting scales and axes
+library(scales)
+```
+
+## Create and Connect Database
+
+```{r}
+# Define the tables to drop
+tables_to_drop <- c("ads", "category", "customer_address", "customer","delivery", "orders", "orders_details", "product", 
+                     "supplier", "supply", "`transaction`")
+
+# Connect to the database
+my_connection <- RSQLite::dbConnect(RSQLite::SQLite(),"/cloud/project/database/an_e_commerce.db")
+
+# Drop each table
+for (table_name in tables_to_drop) {
+  dbExecute(my_connection, paste("DROP TABLE IF EXISTS", table_name))
+}
+
+# After dropping tables, you can proceed to create and load new tables
+sql_commands <- readLines("Schema.sql", warn = FALSE)
+for (sql_cmd in sql_commands) {
+  tryCatch({
+    dbExecute(my_connection, sql_cmd)
+  }, error = function(e) {
+    # Print error message without stopping the execution
+    #cat("Error occurred: ", conditionMessage(e), "\n")
+  })
+}
+```
+
+## Import Data
+
+```{r}
+ads = readr::read_csv('/cloud/project/ecommerce_data/ads_data.csv', col_types = cols(ad_start_date = "c", ad_end_date = "c"))
+category = readr::read_csv('/cloud/project/ecommerce_data/category_data.csv')
+customer_address = readr::read_csv('/cloud/project/ecommerce_data/customer_addresses_data.csv')
+customer = readr::read_csv('/cloud/project/ecommerce_data/customers_data.csv', col_types = cols(date_of_birth = "c"))
+delivery = readr::read_csv('/cloud/project/ecommerce_data/delivery_data.csv', col_types = cols(delivery_start_date = "c", delivery_end_date = "c"))
+orders_details = readr::read_csv('/cloud/project/ecommerce_data/order_details_data.csv')
+orders = readr::read_csv('/cloud/project/ecommerce_data/orders_data.csv', col_types = cols(order_date = "c"))
+product = readr::read_csv('/cloud/project/ecommerce_data/product_data.csv')
+supplier = readr::read_csv('/cloud/project/ecommerce_data/supplier_data.csv')
+supply = readr::read_csv('/cloud/project/ecommerce_data/supply_data.csv')
+transaction = readr::read_csv('/cloud/project/ecommerce_data/transactions_data.csv', col_types = cols(transaction_time = "c"))
+```
+
+## Data Quality Check before writing into database
+
+```{r}
+# Ads
+str(ads) 
+ads$ad_status = as.factor(ads$ad_status)
+str(ads)
+summary(ads)
+
+# Category
+# Missing value in parent_category_id is reasonable if category_id is parent_category_id itself
+str(category)
+summary(category)
+
+# Customer_address
+str(customer_address)
+customer_address$country = as.factor(customer_address$country)
+customer_address$state = as.factor(customer_address$state)
+customer_address$city = as.factor(customer_address$city)
+str(customer_address)
+summary(customer_address)
+
+# Customer
+str(customer)
+customer$gender = as.factor(customer$gender)
+str(customer)
+summary(customer)
+
+# Delivery
+# It's reasonable to have missing values for delivery_start_date and delivery_end_date in "Failed" and "Not_Delivered" delivery_status
+str(delivery)
+delivery$delivery_status = as.factor(delivery$delivery_status)
+str(delivery)
+summary(delivery)
+
+# orders
+str(orders)
+orders$order_status = as.factor(orders$order_status)
+str(orders)
+summary(orders)
+
+# orders_Details
+str(orders_details)
+summary(orders_details)
+
+# Product
+str(product)
+summary(product)
+
+# Supplier
+str(supplier)
+#supplier$supplier_phone = as.character(supplier$supplier_phone)
+supplier$supplier_country = as.factor(supplier$supplier_country)
+supplier$supplier_state = as.factor(supplier$supplier_state)
+supplier$supplier_city = as.factor(supplier$supplier_city)
+str(supplier)
+summary(supplier)
+
+# Supply
+str(supply)
+summary(supply)
+
+# Transaction
+str(transaction)
+# Transform transaction_time without the float
+transaction$transaction_time = sub("\\..*", "", transaction$transaction_time)
+transaction$payment_method = as_factor(transaction$payment_method)
+transaction$transaction_status = as_factor(transaction$transaction_status)
+str(transaction)
+summary(transaction)
+```
+
+## Write them to the database
+
+```{r}
+RSQLite::dbWriteTable(my_connection,"ads",ads,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"category",category,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"customer_address",customer_address,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"customer",customer,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"delivery",delivery,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"orders",orders,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"orders_details",orders_details,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"product",product,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"supplier",supplier,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"supply",supply,append = TRUE,overwrite=FALSE)
+RSQLite::dbWriteTable(my_connection,"transaction",transaction,append = TRUE,overwrite=FALSE)
+```
+
+## Database check
+
+```{r}
+# Tables check to see if there's any error in the data import stage
+ads_check = tbl(my_connection, "ads")
+ads_check
+category_check = tbl(my_connection, "category")
+category_check
+customer_address_check = tbl(my_connection, "customer_address")
+customer_address_check
+customer_check = tbl(my_connection, "customer")
+customer_check
+delivery_check = tbl(my_connection, "delivery")
+delivery_check
+orders_check = tbl(my_connection, "orders")
+orders_check
+orders_details_check = tbl(my_connection, "orders_details")
+orders_details_check
+product_check = tbl(my_connection, "product")
+product_check
+supplier_check = tbl(my_connection, "supplier")
+supplier_check
+supply_check = tbl(my_connection, "supply")
+supply_check
+transaction_check = tbl(my_connection, "transaction")
+transaction_check
+```
+
+It seems no data structure errors in this stage.
+
+------------------------------------------------------------------------
+
+# Analysis
+
+## 1 Product Popularity
+
+```{r}
+# Execute SQL query to count the frequency of each product_id and retrieve top 10 popular products
+top_10_popular_products <- dbGetQuery(my_connection, "
+  SELECT p.product_name, 
+         SUM(od.sub_quantity) AS Frequency
+  FROM orders_details od
+  JOIN product p ON od.product_id = p.product_id
+  GROUP BY od.product_id, p.product_name
+  ORDER BY Frequency DESC
+  LIMIT 10
+")
+
+# Plot the bar chart of the top 10 popular products with product names on the x-axis
+ggplot(top_10_popular_products, aes(x = reorder(product_name, -Frequency), y = Frequency)) +
+  geom_bar(stat = "identity", fill = "#6495ED") +
+  geom_text(aes(label = Frequency), vjust = -0.5, size = 3, color = "black") +  # Add numeric labels on top of bars
+  labs(title = "Top 10 Popular Products",
+       x = "Product Name",
+       y = "Amount Consumed") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+Gaming laptops, screwdriver sets and polo shirts are the top 3 popular products with more than 40 units per product being sold.
+
+## 2 Product Sales Analysis
+
+```{r}
+# Execute SQL query to calculate total revenue for each product and retrieve top 10 products
+product_total_revenue <- dbGetQuery(my_connection, "
+  SELECT product.product_id, 
+         product.product_name,
+         SUM(CASE 
+               WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+               ELSE orders_details.sub_quantity * product.product_price
+             END) AS total_revenue
+  FROM orders_details
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN orders ON orders_details.order_id = orders.order_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  GROUP BY product.product_id
+  ORDER BY total_revenue DESC
+  LIMIT 10
+")
+
+# Create the ggplot for total revenue with product names on the x-axis
+ggplot(product_total_revenue, aes(x = reorder(product_name, desc(total_revenue)), y = total_revenue)) +
+  geom_bar(stat = "identity", fill = "#6495ED") +
+  labs(title = "Total Sales Figures for Top 10 Products",
+       x = "Product Name",
+       y = "Total Sales") +
+  scale_y_continuous(labels = scales::comma, breaks = seq(0, max(product_total_revenue$total_revenue), by = 25000)) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+screw driver sets, Plant pots and bookshelves are the top 3 products that have the most sales, and all top 10 products have more than 100,000 sales which is considerably a great amount of sales. top 10 products are from all categories except the Electronics category. Which makes sense as Electronics will not have a high amount of sales.
+
+## 3 Category Sales & Popularity Analysis
+
+```{r}
+# Category Popularity
+category_popularity <- dbGetQuery(my_connection, "
+SELECT SUBSTRING(product.category_id, 1, 6) AS category,
+       SUM(orders_details.sub_quantity) AS total_quantity,
+       category.category_name
+FROM product
+JOIN orders_details ON product.product_id = orders_details.product_id
+JOIN category ON SUBSTRING(product.category_id, 1, 6) = category.category_id
+GROUP BY SUBSTRING(product.category_id, 1, 6), category.category_name
+")
+
+# Category Sales
+category_sales <- dbGetQuery(my_connection, "
+SELECT SUBSTRING(product.category_id, 1, 6) AS category,
+       SUM(CASE
+               WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+               ELSE orders_details.sub_quantity * product.product_price
+           END) AS total_sales,
+       category.category_name
+FROM product
+JOIN orders_details ON product.product_id = orders_details.product_id
+JOIN orders ON orders_details.order_id = orders.order_id
+JOIN customer ON orders.customer_id = customer.customer_id
+JOIN category ON SUBSTRING(product.category_id, 1, 6) = category.category_id
+GROUP BY SUBSTRING(product.category_id, 1, 6), category.category_name
+")
+
+# Combine category sales and category popularity data, removing duplicate category_name column
+combined_data <- inner_join(category_sales, category_popularity %>% select(-category_name), by = "category")
+
+# Create the plot
+ggplot(combined_data, aes(x = category_name)) +
+  geom_bar(aes(y = total_sales), stat = "identity", fill = "#6495ED") +  # Bar plot representing category sales
+  geom_line(aes(y = total_quantity * 1000), color = "red", group = 1) +  # Line plot representing category popularity, multiplied by 1000 just for demonstration of comparison on the same plot
+  scale_y_continuous(name = "Total Sales", sec.axis = sec_axis(~./1000, name = "Popularity")) +  # Set dual y-axes, representing sales and popularity
+  labs(title = "Category Sales and Popularity Analysis",
+       x = "Category", y = "Total Sales",) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+The above graph depicts in terms of popularity of categories and total sales.It can be seen that Home & Garden and Toys & Games categories have the highest amount of sales more than 200,000 and electronics have the lowest amount which is again understandable as Electronics generally do not have a lot of sales
+
+## 4 Gender & Category Visualization
+
+```{r}
+# Execute SQL query in R
+category_gender_sales <- dbGetQuery(my_connection, "
+SELECT SUBSTRING(product.category_id, 1, 6) AS category,
+       customer.gender,
+       SUM(CASE
+               WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+               ELSE orders_details.sub_quantity * product.product_price
+           END) AS total_sales,
+       category.category_name
+FROM product
+JOIN orders_details ON product.product_id = orders_details.product_id
+JOIN orders ON orders_details.order_id = orders.order_id
+JOIN customer ON orders.customer_id = customer.customer_id
+JOIN category ON SUBSTRING(product.category_id, 1, 6) = category.category_id
+GROUP BY SUBSTRING(product.category_id, 1, 6), category.category_name, customer.gender
+")
+
+# Plot gender-category sales relationship
+ggplot(category_gender_sales, aes(x = category_name, y = total_sales, fill = gender)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Gender & Category Sales Analysis",
+       x = "Category Name",
+       y = "Total Sales",
+       fill = "Gender") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+The above graph depicts that in general all genders equally buy Home & Garden products but there is a clear difference in gender differences for other categories. For clothing there are more sales to females and Electronics, Games & Toys are more sold to boys. For Books there is somewhat an equal amount of sales to both boys and girls. Along with this, Figure13 represents the density of users are more after 55 years of age suggesting that most of the users of the website are senior citizens and not much sales are done for users who are young and middle aged. This suggests that more marketing and advertisements have to be run for these age groups.
+
+## 5 Age Visualization
+
+```{r}
+customer1 <- dbGetQuery(my_connection, "
+  SELECT customer.*,
+  FLOOR((julianday('now') - julianday(customer.date_of_birth)) / 365.25) AS age1
+  FROM customer")
+
+# Plot the distribution of Age
+ggplot(customer1, aes(x = age1)) +
+  geom_histogram(aes(y = after_stat(density)), fill = "#6495ED", binwidth = 5) +
+  geom_density(color = "red") +
+  labs(title = "Histogram and Density Plot of Age", x = "Age", y = "Density") +
+  scale_x_continuous(breaks = seq(0, max(customer1$age1), by = 5)) +
+  theme_minimal()
+```
+
+The density of users are more after 55 years of age suggesting that most of the users of the website are senior citizens and not much sales are done for users who are young and middle aged. This suggests that more marketing and advertisements have to be run for these age groups.
+
+## 6 Age & Category Visualization (pass)
+
+```{r}
+# Execute SQL query to get relevant data
+customer_data <- dbGetQuery(my_connection, "
+  SELECT FLOOR((julianday('now') - julianday(customer.date_of_birth)) / 365.25) AS age,
+         SUM(CASE
+                 WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+                 ELSE orders_details.sub_quantity * product.product_price
+             END) AS total_sales,
+         SUBSTRING(product.category_id, 1, 6) AS category,
+         category.category_name
+  FROM customer
+  JOIN orders ON customer.customer_id = orders.customer_id
+  JOIN orders_details ON orders.order_id = orders_details.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN category ON SUBSTRING(product.category_id, 1, 6) = category.category_id
+  GROUP BY age, customer.gender, category, category.category_name
+")
+
+# Define age groups with intervals of 10 years
+customer_data$age_group <- cut(customer_data$age, breaks = seq(0, max(customer_data$age) + 10, by = 10))
+
+# Plot Age & Category Visualization
+ggplot(customer_data, aes(x = age_group, y = total_sales, fill = category_name)) +
+  geom_bar(position = "stack", stat = "identity") +
+  labs(title = "Total Sales by Age Group and Category",
+       x = "Age Group",
+       y = "Total Sales",
+       fill = "Category") +
+  theme_minimal()
+```
+
+The above graph depicts that although members are mostly senior citizens most 20-30 and 30-40 age group members have made the most amount of sales suggesting that although the amount of users are low they make high valued purchases. 10-20 and 40-50 aged customers have purchased products at the lowest value. Therefore we can do more marketing to them to increase sales
+
+## 7 Region Revenue Analysis
+
+```{r}
+# Execute SQL query to calculate total revenue for each state
+state_total_revenue <- dbGetQuery(my_connection, "
+  SELECT customer_address.state, 
+         SUM(
+           CASE 
+             WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+             ELSE orders_details.sub_quantity * product.product_price
+           END
+         ) AS total_revenue
+  FROM orders
+  JOIN orders_details ON orders.order_id = orders_details.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  JOIN customer_address ON customer.customer_id = customer_address.customer_id
+  GROUP BY customer_address.state
+")
+
+# Select the top 10 states by total revenue
+top_10_state_total_revenue <- state_total_revenue %>%
+  arrange(desc(total_revenue)) %>%
+  head(10)
+
+# Plot the total revenue for the top 10 states
+ggplot(top_10_state_total_revenue, aes(x = reorder(state, -total_revenue), y = total_revenue)) + 
+  geom_bar(stat = "identity", fill = "#6495ED") +
+  labs(title = "Top 10 States by Total Consumption",
+       x = "State",
+       y = "Total Consumption") +
+  theme_minimal() +
+  scale_y_continuous(labels = scales::comma, breaks = seq(0, max(top_10_state_total_revenue$total_revenue), by = 250000)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+```
+
+------------------------------------------------------------------------
+
+The above graph shows that Colarado has the most amount of sales and Idaho has the lowest amount of sales however it is still at a considerable level as all sales are above 750,000 However we can try to increase more sales in Idaho by doing more promotion for users in that particular region
+
+# Time Analysis
+
+## 8 Total Order Value Trend Analysis
+
+```{r}
+# Convert Order_Date to month-year format directly in SQL and calculate total order value per month
+total_order_value_by_month <- dbGetQuery(my_connection, "
+  SELECT strftime('%Y-%m', orders.order_date) AS month_year,
+         SUM(
+           CASE 
+             WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+             ELSE orders_details.sub_quantity * product.product_price
+           END
+         ) AS total_order_value
+  FROM orders
+  JOIN orders_details ON orders.order_id = orders_details.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  GROUP BY month_year
+")
+
+# Plot the trend of total order value over time
+ggplot(total_order_value_by_month, aes(x = as.Date(paste0(month_year, "-01"), "%Y-%m-%d"), y = total_order_value, group = 1)) +
+  geom_line(color = "#6495ED", size = 1, aes(group = 1)) +
+  labs(title = "Trend of Total Order Value Over Time",
+       x = "Month",
+       y = "Total Order Value") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  scale_y_continuous(labels = scales::dollar) +  # Adjust y-axis labels to use dollar formatting
+  scale_x_date(labels = scales::date_format("%b %Y")) +  # Format x-axis labels as Sep 2023
+  theme(legend.position = "none")  # Remove legend to avoid redundancy
+```
+
+the graph shows the total sales from all orders for each month. The figure increases considerably between October and December 2023, reaching a peak in December, followed by a rapid decrease in the next month.
+
+## 9 Average Order Value Trend Analysis
+
+```{r}
+# Convert Order_Date to month-year format directly in SQL and calculate average order value per month
+average_order_value_by_month <- dbGetQuery(my_connection, "
+  SELECT strftime('%Y-%m', orders.order_date) AS month_year,
+         AVG(
+           CASE 
+             WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+             ELSE orders_details.sub_quantity * product.product_price
+           END
+         ) AS average_order_value
+  FROM orders
+  JOIN orders_details ON orders.order_id = orders_details.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  GROUP BY month_year
+")
+
+# Plot the trend of average order value over time
+ggplot(average_order_value_by_month, aes(x = as.Date(paste0(month_year, "-01"), "%Y-%m-%d"), y = average_order_value, group = 1)) +
+  geom_line(color = "#6495ED", size = 1, aes(group = 1)) +
+  labs(title = "Trend of Average Order Value Over Time",
+       x = "Month",
+       y = "Average Order Value") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  scale_y_continuous(labels = scales::dollar) +  # Adjust y-axis labels to use dollar formatting
+  scale_x_date(labels = scales::date_format("%b %Y")) +  # Format x-axis labels as Sep 2023
+  theme(legend.position = "none")  # Remove legend to avoid redundancy
+
+```
+
+This graph illustrates the average sales value of all orders for each month. There is a significant increase between October and November 2023, while the average sales drop dramatically from January to February 2024
+
+## 10 Category Sales Trend Analysis
+
+```{r}
+# Execute SQL query in R
+category_sales_time <- dbGetQuery(my_connection, "
+SELECT strftime('%Y-%m', orders.order_date) AS category_month_year,
+       SUBSTRING(product.category_id, 1, 6) AS category,
+       SUM(CASE
+               WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+               ELSE orders_details.sub_quantity * product.product_price
+           END) AS total_sales,
+       category.category_name
+FROM product
+JOIN orders_details ON product.product_id = orders_details.product_id
+JOIN orders ON orders_details.order_id = orders.order_id
+JOIN customer ON orders.customer_id = customer.customer_id
+JOIN category ON SUBSTRING(product.category_id, 1, 6) = category.category_id
+GROUP BY strftime('%Y-%m', orders.order_date), SUBSTRING(product.category_id, 1, 6), category.category_name
+")
+
+# Convert category_month_year to Date format
+category_sales_time$category_month_year <- as.Date(paste0(category_sales_time$category_month_year, "-01"))
+
+# Plot the line chart of category sales over time for the five main categories
+ggplot(category_sales_time, aes(x = category_month_year, y = total_sales, color = category_name)) + geom_line() +
+  labs(title = "Category Sales Analysis Over Time",
+       x = "Month",
+       y = "Total Sales",
+       color = "Category Name") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  scale_x_date(date_labels = "%b %Y") +
+  scale_y_continuous(labels = scales::comma)
+```
+
+The above graph depicts the trend in total consumption with and without membership for each month. 
+
+It is apparent that the total consumption for non-members surpasses that of members throughout the entire period, which is counterintuitive. While the consumption trend closely resembles that depicted in Figure 16, the figures for members reached a peak in November 2023.  
+
+According to the sales analysis, over time Home & Garden and Electronics sales have met with a sharp decline from January to February. But all categories of books, clothing, electronics, Home & Garden and Toys & Games have had a steady increase from September 2023 to December 2023 suggesting that the products sold through the website are in demand and preferred by customers. The decline from December to January could be because of the year end and most sales happening during the Christmas and new year time for seasonal changes. However, books, clothing and Toys & Games have started to increase again, which suggests that sales will increase, and the company has nothing to worry about
+
+## 11 Membership Revenue Trend Analysis
+
+```{r}
+# Execute SQL query in the database and fetch the results
+membership_revenue_by_month <- dbGetQuery(my_connection, "
+  SELECT strftime('%Y-%m', orders.order_date) AS membership_month_year,
+         customer.membership,
+         SUM(CASE 
+               WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+               ELSE orders_details.sub_quantity * product.product_price
+             END) AS total_revenue
+  FROM orders
+  JOIN orders_details ON orders.order_id = orders_details.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  GROUP BY membership_month_year, customer.membership
+")
+
+# Convert the date column to a date-time format
+membership_revenue_by_month$membership_month_year <- ym(membership_revenue_by_month$membership_month_year)
+
+# Plot the trend of membership revenue over time
+ggplot(membership_revenue_by_month, aes(x = membership_month_year, y = total_revenue, group = membership, color = membership)) +
+  geom_line(size = 1) +
+  labs(title = "Trend of Membership Consumption Over Time",
+       x = "Month",
+       y = "Total Consumption",
+       color = "Membership Status") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  scale_x_date(date_labels = "%b %Y") +
+  scale_y_continuous(labels = scales::comma)
+```
+
+The above graph shows the trend in total consumption with and without membership for each month. It is apparent that the total consumption for non-members surpasses that of members throughout the entire period, which is counterintuitive. The figures for members reached a peak in November 2023.
+
+## 12 Total Product Revenue Analysis by Rate
+
+```{r}
+# Query to retrieve product revenue by rate category
+product_revenue_by_rate <- dbGetQuery(my_connection, "
+  SELECT strftime('%Y-%m', orders.order_date) AS product_month_year,
+         SUM(
+           CASE 
+             WHEN customer.membership = 'yes' THEN orders_details.sub_quantity * product.product_price * product.discount_percentage
+             ELSE orders_details.sub_quantity * product.product_price
+           END
+         ) AS total_revenue,
+         CASE
+           WHEN product.rate_value BETWEEN 1 AND 2 THEN '1-2'
+           WHEN product.rate_value BETWEEN 2 AND 3 THEN '2-3'
+           WHEN product.rate_value BETWEEN 3 AND 4 THEN '3-4'
+           WHEN product.rate_value BETWEEN 4 AND 5 THEN '4-5'
+           ELSE 'Unknown'
+         END AS rate_category
+  FROM orders_details
+  JOIN orders ON orders_details.order_id = orders.order_id
+  JOIN product ON orders_details.product_id = product.product_id
+  JOIN customer ON orders.customer_id = customer.customer_id
+  GROUP BY product_month_year, rate_category
+")
+
+# Convert the date column to a date-time format
+product_revenue_by_rate$product_month_year <- ym(product_revenue_by_rate$product_month_year)
+
+# Plot the trend of product revenue by rate category over time
+ggplot(product_revenue_by_rate, aes(x = product_month_year, y = total_revenue, group = rate_category, color = rate_category)) +
+  geom_line(size = 1) +
+  labs(title = "Product Sales Trend by Rate Category Over Time",
+       x = "Month",
+       y = "Total Product Sales",
+       color = "Rate Category") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  scale_x_date(date_labels = "%b %Y") +
+  scale_y_continuous(labels = scales::comma)
+```
+
+The graph demonstrates the trend of total product sales categorized into four rate groups. 
+
+Product sales in all rate categories exhibit a similar trend to that of Figure 16. However, it appears that the total product sales for both the highest and lowest rate categories maintain similar figures throughout the entire period, except for last month. 
+
+It is seen that most of the rates have been given in the month of December where the greatest number of sales also happened. It could have been because of Christmas. It is questionable as the range of rates is quite mixed at 4-5 and 1-2, meaning we have made quality sales but also sales which are unsatisfactory. A further analysis has to be done to gauge for what products by which sellers have got the unsatisfactory rates and steps must be taken to rectify the quality to increase the rates. 
+
+## Disconnect from the database
+
+```{r}
+dbDisconnect(my_connection)
+```
